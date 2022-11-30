@@ -1,0 +1,14 @@
+.Submit{
+    transition: 300ms !important;
+    background-color: #A749FF;
+    text-decoration: none;
+    color: #fff;
+    padding: 0.8rem 1.5rem;
+    border: none;
+    margin-top: 2rem;
+    &:hover {
+      border: #A749FF solid 1px;
+      background-color: #fff;
+      color: #000;
+    }
+  }

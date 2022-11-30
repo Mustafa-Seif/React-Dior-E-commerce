@@ -1,0 +1,13 @@
+.more_details {
+  transition: 300ms !important;
+  background-color: #A749FF;
+  text-decoration: none;
+  color: #fff;
+  padding: 0.9rem;
+  border: none;
+}
+.more_details:hover {
+  border: #A749FF solid 1px;
+  background-color: #fff;
+  color: #000;
+}/*# sourceMappingURL=producta.css.map */

@@ -1,0 +1,23 @@
+nav {
+  h1 {
+    font-weight: 800;
+    font-family: Abril Fatface, cursive;
+    color: #a749ff;
+  }
+  ul {
+    margin-left: 15%;
+    li {
+      margin-left: 3rem;
+      font-weight: 700;
+    }
+  }
+  .cart_warpper{
+    position: relative;
+    span{
+
+      position: absolute;
+      top: -.5rem;
+      font-size: .8rem;
+    }
+  }
+}

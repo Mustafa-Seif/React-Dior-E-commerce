@@ -1,0 +1,17 @@
+
+.toTopIcon {
+  background-color: #A749FF;
+  display: inline-block;
+  position: fixed;
+  bottom:3rem;
+  right: 0rem;
+  padding: 0.7rem 1rem 0.7rem 1rem;
+  border-radius: 50%;
+  color: #fff;
+  transition: 300ms;
+  z-index: 999;
+  &:hover {
+    background-color: #A749FF;
+    color: #fff;
+  }
+}

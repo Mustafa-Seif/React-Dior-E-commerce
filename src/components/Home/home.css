@@ -1,0 +1,32 @@
+@import url("https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap");
+.caption_left {
+  position: absolute !important;
+  top: 10rem;
+  right: -14rem !important;
+}
+.caption_left h1 {
+  font-size: 4rem;
+  font-family: Abril Fatface, cursive;
+}
+
+.caption_center {
+  position: absolute !important;
+  top: 10rem;
+}
+.caption_center h1 {
+  font-size: 4rem;
+  font-family: Abril Fatface, cursive;
+}
+.caption_center .countDawn {
+  font-size: 3rem;
+}
+
+.caption_right {
+  position: absolute;
+  top: 10rem;
+  left: -14rem !important;
+}
+.caption_right h1 {
+  font-size: 4rem;
+  font-family: Abril Fatface, cursive;
+}/*# sourceMappingURL=home.css.map */
