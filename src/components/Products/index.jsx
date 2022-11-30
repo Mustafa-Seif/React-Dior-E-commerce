@@ -41,9 +41,9 @@ const Products = () => {
       });
       setData(dataFiltered);
     }
-    // else{
-    //    return setData(data)
-    // }
+    else{
+       return setData(prevState=> setData(prevState))
+    }
   };
 
   return (
