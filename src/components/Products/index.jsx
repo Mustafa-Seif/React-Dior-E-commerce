@@ -29,27 +29,30 @@ const Products = () => {
   }, []);
 
   // handleSearch
-  const [searchVal, setSearchVal] = useState("");
+  // const [searchVal, setSearchVal] = useState("");
 
-  const handleSearch = (e) => {
-    const filter = e.target.value;
-    setSearchVal(filter);
+  // const handleSearch = (e) => {
+  //   const filter = e.target.value;
+  //   console.log(filter)
+  //   setSearchVal(filter);
 
-    if (searchVal.length !== 0) {
-      const dataFiltered = data.filter((el, ind) => {
-        return el.title.toLowerCase().includes(searchVal.toLowerCase());
-      });
-      setData(dataFiltered);
-    }
-    else{
-       return setData(prevState=> setData(prevState))
-    }
-  };
+  //   if (searchVal.length !== 0 ) {
+  //     console.log("first")
+  //     const dataFiltered = data.filter((el, ind) => {
+  //       return el.title.toLowerCase().includes(searchVal.toLowerCase());
+  //     });
+  //     setData(dataFiltered);
+  //   }
+  //   else if(searchVal.length === 0 || searchVal === null || searchVal === " "){
+  //     console.log("second")
+  //      return setData(data);
+  //   }
+  // };
 
   return (
     <div>
       <div className="container py-5">
-        <input
+        {/* <input
           placeholder="Search..."
           value={searchVal}
           onChange={handleSearch}
@@ -63,7 +66,7 @@ const Products = () => {
             border: "solid 1px #A749FF",
             padding:".5rem 1rem"
           }}
-        />
+        /> */}
         <div className="row">
           <div className="col-12 text-center">
             <h1>Products</h1>
