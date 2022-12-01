@@ -4,23 +4,26 @@ import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { AiOutlineHeart } from "react-icons/ai";
 import ToTopIcon from "../ToTopIcon/index";
+import { BsSearch } from "react-icons/bs";
 
 const Products = () => {
   // liked product
   const [liked, setLiked] = useState(false);
   const handleLiked = (e, id) => {
     if (liked === false) {
-    setLiked(!liked);
-    e.target.style.color = "red";
+      setLiked(!liked);
+      e.target.style.color = "red";
     }
   };
 
   // get data detais
   const [data, setData] = useState([]);
+  const [neWdata, setNewData] = useState([]);
   useEffect(() => {
     axios
       .get("https://fakestoreapi.com/products")
       .then((res) => {
+        // console.log(res.data)
         setData(res.data);
       })
       .catch((err) => {
@@ -28,54 +31,47 @@ const Products = () => {
       });
   }, []);
 
-  // handleSearch
-  // const [searchVal, setSearchVal] = useState("");
+  // handle Search input
+  const [searchVal, setSearchVal] = useState("");
 
-  // const handleSearch = (e) => {
-  //   const filter = e.target.value;
-  //   console.log(filter)
-  //   setSearchVal(filter);
-
-  //   if (searchVal.length !== 0 ) {
-  //     console.log("first")
-  //     const dataFiltered = data.filter((el, ind) => {
-  //       return el.title.toLowerCase().includes(searchVal.toLowerCase());
-  //     });
-  //     setData(dataFiltered);
-  //   }
-  //   else if(searchVal.length === 0 || searchVal === null || searchVal === " "){
-  //     console.log("second")
-  //      return setData(data);
-  //   }
-  // };
+  const handleSearch = (e) => {
+    setSearchVal(e.target.value);
+    console.log("key up")
+  };
+  useEffect(() => {
+    if (searchVal.length !== 0) {
+      const dataFiltered = data.filter((el, ind) => {
+        return el.title.toLowerCase().includes(searchVal.toLowerCase());
+      });
+      setNewData(dataFiltered);
+    } else{
+       setNewData(data);
+    }
+  }, [searchVal]);
 
   return (
     <div>
       <div className="container py-5">
-        {/* <input
+        <div className="inputSearchRapper">
+        <input
           placeholder="Search..."
           value={searchVal}
           onChange={handleSearch}
-          style={{
-            margin: "auto",
-            display: "block",
-            marginBottom: "2rem",
-            width: "50%",
-            borderRadius: "30px",
-            paddingLeft: "1rem",
-            border: "solid 1px #A749FF",
-            padding:".5rem 1rem"
-          }}
-        /> */}
+        />
+        <BsSearch style={{position: "absolute",
+    right: "10px",top:"10px"}}/>
+
+        </div>
+        
         <div className="row">
           <div className="col-12 text-center">
-            <h1>Products</h1>
+            <h1 >Products</h1>
             <hr />
           </div>
         </div>
         <div className="container">
           <div className="row justify-content-around">
-            {data.map((d) => {
+            {neWdata.map((d) => {
               return (
                 <div
                   className="card text-center mb-5 mt-5 p-4 col-4 "
@@ -93,7 +89,16 @@ const Products = () => {
                   </div>
 
                   <div className="card-body">
-                    <p className="card-title" style={{textOverflow:"ellipsis" ,whiteSpace:"nowrap",overflow:"hidden"}}>{d.title}</p>
+                    <p
+                      className="card-title"
+                      style={{
+                        textOverflow: "ellipsis",
+                        whiteSpace: "nowrap",
+                        overflow: "hidden",
+                      }}
+                    >
+                      {d.title}
+                    </p>
                     <div className="row mb-5">
                       <h5 className="card-text col">${d.price} </h5>
                       <AiOutlineHeart

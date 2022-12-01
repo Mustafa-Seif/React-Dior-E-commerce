@@ -43,7 +43,7 @@ const Contact = () => {
              <small id="emailHelp" class="form-text text-muted ">
             {errors.firstName?.type === 'required' && <p className="text-danger" role="alert">Password Is Required</p>}
             {errors.firstName?.type === 'minLength' && <p className="text-danger" role="alert">Min Length Is 6</p>}
-            {errors.firstName?.type === 'maxLength' && <p className="text-danger" role="alert">Man Length Is 10</p>}
+            {errors.firstName?.type === 'maxLength' && <p className="text-danger" role="alert">Max Length Is 10</p>}
 
             </small>
           </div>

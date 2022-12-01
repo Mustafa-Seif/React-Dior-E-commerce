@@ -1,13 +1,31 @@
 .more_details {
   transition: 300ms !important;
-  background-color: #A749FF;
+  background-color: #a749ff;
   text-decoration: none;
   color: #fff;
   padding: 0.9rem;
   border: none;
   &:hover {
-    border: #A749FF solid 1px;
+    border: #a749ff solid 1px;
     background-color: #fff;
     color: #000;
   }
 }
+
+
+.inputSearchRapper{
+  border: solid 1px #A749FF;
+  width: 25%;
+  padding: 0.4rem ;
+  position: relative;
+  border-radius: 10px;
+  input{
+    
+    border: none;
+    &:focus{
+      outline: none;
+    }
+  }
+
+}
+
