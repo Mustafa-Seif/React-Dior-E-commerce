@@ -26,6 +26,7 @@ const Products = () => {
       .then((res) => {
         console.log(res.data);
         setData(res.data);
+        // setNewData(res.data)
       })
       .catch((err) => {
         console.log(err);
@@ -33,23 +34,23 @@ const Products = () => {
   }, []);
 
   // handle Search input
-  const [searchVal, setSearchVal] = useState("");
+  // const [searchVal, setSearchVal] = useState("");
 
-  const handleSearch = (e) => {
-    setSearchVal(e.target.value);
-    console.log("key up");
-  };
-  useEffect(() => {
-    if (searchVal.length !== 0) {
-      const dataFiltered = data.filter((el, ind) => {
-        return el.title.toLowerCase().includes(searchVal.toLowerCase());
-      });
-      setNewData(dataFiltered);
-    } else {
-      setData(data);
-    }
-  }, [searchVal]);
+  // const handleSearch = (e) => {
+  //   setSearchVal(e.target.value);
+  // };
+  // useEffect(() => {
+  //   if (searchVal.length !== 0) {
+  //     const dataFiltered = data.filter((el, ind) => {
+  //       return el.title.toLowerCase().includes(searchVal.toLowerCase());
+  //     });
+  //     setNewData(dataFiltered);
+  //   } else {
+  //     setNewData(data);
+  //   }
+  // }, [searchVal]);
 
+  // show spinner if no data 
   if (data.length === 0) {
     return (
       <div className="Spinner_parent">
@@ -61,16 +62,16 @@ const Products = () => {
   return (
     <div>
       <div className="container py-5">
-        <div className="inputSearchRapper">
+        {/* <div className="inputSearchRapper">
           <input
             placeholder="Search..."
-            value={searchVal}
-            onChange={handleSearch}
+            // value={searchVal}
+            // onChange={handleSearch}
           />
           <BsSearch
             style={{ position: "absolute", right: "10px", top: "10px" }}
           />
-        </div>
+        </div> */}
 
         <div className="row">
           <div className="col-12 text-center">
@@ -80,7 +81,7 @@ const Products = () => {
         </div>
         <div className="container">
           <div className="row justify-content-around">
-            {neWdata.map((d) => {
+            {data.map((d) => {
               return (
                 <div
                   className="card text-center mb-5 mt-5 p-4 col-4 "
