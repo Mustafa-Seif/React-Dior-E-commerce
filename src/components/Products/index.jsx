@@ -5,6 +5,7 @@ import { NavLink } from "react-router-dom";
 import { AiOutlineHeart } from "react-icons/ai";
 import ToTopIcon from "../ToTopIcon/index";
 import { BsSearch } from "react-icons/bs";
+import Spinner from "react-bootstrap/Spinner";
 
 const Products = () => {
   // liked product
@@ -23,7 +24,7 @@ const Products = () => {
     axios
       .get("https://fakestoreapi.com/products")
       .then((res) => {
-        // console.log(res.data)
+        console.log(res.data);
         setData(res.data);
       })
       .catch((err) => {
@@ -36,7 +37,7 @@ const Products = () => {
 
   const handleSearch = (e) => {
     setSearchVal(e.target.value);
-    console.log("key up")
+    console.log("key up");
   };
   useEffect(() => {
     if (searchVal.length !== 0) {
@@ -44,28 +45,36 @@ const Products = () => {
         return el.title.toLowerCase().includes(searchVal.toLowerCase());
       });
       setNewData(dataFiltered);
-    } else{
-       setNewData(data);
+    } else {
+      setData(data);
     }
   }, [searchVal]);
+
+  if (data.length === 0) {
+    return (
+      <div className="Spinner_parent">
+        <Spinner animation="border" variant="danger" className="spinner" />
+      </div>
+    );
+  }
 
   return (
     <div>
       <div className="container py-5">
         <div className="inputSearchRapper">
-        <input
-          placeholder="Search..."
-          value={searchVal}
-          onChange={handleSearch}
-        />
-        <BsSearch style={{position: "absolute",
-    right: "10px",top:"10px"}}/>
-
+          <input
+            placeholder="Search..."
+            value={searchVal}
+            onChange={handleSearch}
+          />
+          <BsSearch
+            style={{ position: "absolute", right: "10px", top: "10px" }}
+          />
         </div>
-        
+
         <div className="row">
           <div className="col-12 text-center">
-            <h1 >Products</h1>
+            <h1>Products</h1>
             <hr />
           </div>
         </div>
