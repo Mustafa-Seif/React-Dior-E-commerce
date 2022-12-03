@@ -11,6 +11,7 @@ import ProjectsDetails from './components/projectDetails/ProjectsDetails';
 import Cart from './components/Cart';
 import CheckOut from './components/CheckOut';
 import ScrollToTop from './components/ScrollToTop';
+import WishList from './components/WishList/WishList';
 
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
           <Route  path="/products/:id" element={<ProjectsDetails />} />
           <Route path='/cart' element={<Cart/>}/>
           <Route path='/checkout' element={<CheckOut/>}/>
+          <Route path='/wishlist' element={<WishList/>}/>
           <Route  path='*' element={<NoPage />} />
         </Routes>
         <Footer />

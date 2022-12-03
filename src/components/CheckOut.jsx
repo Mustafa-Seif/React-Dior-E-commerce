@@ -59,7 +59,10 @@ function CheckOut() {
             </div>
             <div className="col-md-7 col-lg-8">
               <h4 className="mb-3">Billing address</h4>
-              <form className="needs-validation"  onSubmit={handleSubmit(onSubmit)}>
+              <form
+                className="needs-validation"
+                onSubmit={handleSubmit(onSubmit)}
+              >
                 <div className="row g-3">
                   <div className="col-sm-6">
                     <label htmlFor="firstName" className="form-label">
@@ -69,16 +72,17 @@ function CheckOut() {
                       type="text"
                       className="form-control"
                       id="firstName"
-                      placeholder=""
-                      
-                      required=""
                       {...register("fName", {
                         required: true,
                       })}
                       aria-invalid={errors.fName ? "true" : "false"}
                     />
                     <small className="">
-                    {errors.fName?.type === 'required' && <p className="text-danger" role="alert">First Name Is Required</p>}
+                      {errors.fName?.type === "required" && (
+                        <p className="text-danger" role="alert">
+                          First Name Is Required
+                        </p>
+                      )}
                     </small>
                   </div>
 
@@ -91,32 +95,46 @@ function CheckOut() {
                       className="form-control"
                       id="lastName"
                       placeholder=""
-                      
                       required=""
                       {...register("lName", {
                         required: true,
                       })}
                       aria-invalid={errors.lName ? "true" : "false"}
                     />
-                    <small >
-                    {errors.lName?.type === 'required' && <p className="text-danger" role="alert">Last Name Is Required</p>}
+                    <small>
+                      {errors.lName?.type === "required" && (
+                        <p className="text-danger" role="alert">
+                          Last Name Is Required
+                        </p>
+                      )}
                     </small>
                   </div>
 
                   <div className="col-12">
                     <label htmlFor="email" className="form-label">
-                      Email <span className="text-muted">(Optional)</span>
                     </label>
                     <input
                       type="email"
                       className="form-control"
                       id="email"
                       placeholder="you@example.com"
+                      {...register("eMail", {
+                        required: true,
+                        pattern: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
+                      })}
                     />
-                    <div className="invalid-feedback">
-                      Please enter a valid email address htmlFor shipping
-                      updates.
-                    </div>
+                    <small  class="form-text text-muted ">
+                    {errors.eMail?.type === "required" && (
+                      <p className="text-danger" role="alert">
+                        Email Is Required
+                      </p>
+                    )}
+                    {errors.eMail?.type === "pattern" && (
+                      <p className="text-danger" role="alert">
+                        Invalid Email... Please Write Valid Email
+                      </p>
+                    )}
+                  </small>
                   </div>
 
                   <div className="col-12">
