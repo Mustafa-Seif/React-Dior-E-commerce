@@ -53,7 +53,6 @@ const Cart = () => {
     <>
       {product.length !==0 && product.map(items)}
       {product.length !==0 && chechOut()}
-  
       {product.length ===0 && emptyCart()}
     </>
   )

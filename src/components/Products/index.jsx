@@ -20,12 +20,16 @@ const Products = () => {
   // get data detais
   const [data, setData] = useState([]);
   const [neWdata, setNewData] = useState([]);
+  const [searchVal, setSearchVal] = useState("");
   useEffect(() => {
+    setNewData(data);
     axios
       .get("https://fakestoreapi.com/products")
       .then((res) => {
         console.log(res.data);
         setData(res.data);
+        setNewData(res.data);
+
         // setNewData(res.data)
       })
       .catch((err) => {
@@ -33,27 +37,22 @@ const Products = () => {
       });
   }, []);
 
-  // handle Search input
-  // const [searchVal, setSearchVal] = useState("");
+  //  handle search 
+  useEffect(() => {
+    if (searchVal) {
+      const dataFiltered = data.filter((el, ind) => {
+        return el.title.toLowerCase().includes(searchVal.toLowerCase());
+      });
+      setNewData(dataFiltered);
+    } else {
+      setNewData(data);
+    }
+  }, [searchVal]);
 
-  // const handleSearch = (e) => {
-  //   setSearchVal(e.target.value);
-  // };
-  // useEffect(() => {
-  //   if (searchVal.length !== 0) {
-  //     const dataFiltered = data.filter((el, ind) => {
-  //       return el.title.toLowerCase().includes(searchVal.toLowerCase());
-  //     });
-  //     setNewData(dataFiltered);
-  //   } else {
-  //     setNewData(data);
-  //   }
-  // }, [searchVal]);
-
-  // show spinner if no data 
+  // show spinner if no data
   if (data.length === 0) {
     return (
-      <div className="Spinner_parent">
+      <div className="Spinner_parent ">
         <Spinner animation="border" variant="danger" className="spinner" />
       </div>
     );
@@ -62,16 +61,16 @@ const Products = () => {
   return (
     <div>
       <div className="container py-5">
-        {/* <div className="inputSearchRapper">
+        <div className="inputSearchRapper">
           <input
             placeholder="Search..."
-            // value={searchVal}
-            // onChange={handleSearch}
+            value={searchVal}
+            onChange={(e) => setSearchVal(e.target.value)}
           />
           <BsSearch
             style={{ position: "absolute", right: "10px", top: "10px" }}
           />
-        </div> */}
+        </div>
 
         <div className="row">
           <div className="col-12 text-center">
@@ -81,7 +80,7 @@ const Products = () => {
         </div>
         <div className="container">
           <div className="row justify-content-around">
-            {data.map((d) => {
+            {neWdata.map((d) => {
               return (
                 <div
                   className="card text-center mb-5 mt-5 p-4 col-4 "

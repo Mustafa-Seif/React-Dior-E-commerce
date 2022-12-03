@@ -1,0 +1,19 @@
+footer {
+  padding: 1rem 0;
+  margin-top: 13rem;
+}
+footer h1 {
+  color: #FFF;
+}
+footer .footerIcons {
+  position: absolute;
+  right: 0;
+  text-align: end;
+  color: #FFF;
+}
+footer .footerIcons svg {
+  transition: 300ms;
+}
+footer .footerIcons svg:hover {
+  color: #A749FF;
+}/*# sourceMappingURL=footer.css.map */

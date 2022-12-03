@@ -12,6 +12,8 @@ const reducerAdd = (state = addItem, action) => {
       }));
       break;
 
+      
+
     default:
       return state;
       break;

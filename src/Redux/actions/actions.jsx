@@ -13,3 +13,11 @@ export const removeItem = (data)=>{
     }
 
 }
+
+export const wishList = (data)=>{
+    return{
+        type:'ADDTOWISHLIST',
+        payload:data
+    }
+
+}

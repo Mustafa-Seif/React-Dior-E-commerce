@@ -3,7 +3,7 @@ import Home from './components/Home'
 import About from '../src/components/About'
 import Products from '../src/components/Products'
 import Contact from '../src/components/Contact'
-import Footer from '../src/components/Footer'
+import Footer from '../src/components/Footer/Footer'
 import Header from '../src/components/Header'
 import NoPage from '../src/components/NoPage'
 import { Route, Routes, BrowserRouter } from 'react-router-dom';
@@ -29,7 +29,7 @@ function App() {
           <Route path='/checkout' element={<CheckOut/>}/>
           <Route  path='*' element={<NoPage />} />
         </Routes>
-        {/* <Footer /> */}
+        <Footer />
       </BrowserRouter>
     </>
   );
