@@ -29,6 +29,7 @@ const Header = () => {
             <div
               className="collapse navbar-collapse"
               id="navbarSupportedContent"
+              
             >
               <NavLink className="navbar-brand fw-bild" to="/">
                 <h1>Dior.</h1>
@@ -59,13 +60,17 @@ const Header = () => {
                   </NavLink>
                 </li>
               </ul>
+              
               <Login />
               <Register />
-              <NavLink to="/wishlist"><BsSuitHeartFill className="ms-3 me-3 text-dark" ></BsSuitHeartFill></NavLink>
+              <NavLink to="/wishlist">
+                <BsSuitHeartFill className="ms-3 me-3 text-dark"></BsSuitHeartFill>
+              </NavLink>
               <div className="cart_warpper">
                 <CartBtn />
                 <span className="text-danger">{product.length}</span>
               </div>
+              
             </div>
           </div>
         </nav>

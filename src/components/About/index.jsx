@@ -11,8 +11,8 @@ const About = () => {
       <h1>About Us</h1>
       <hr/>
     </div>
-        <div className='row'>
-          <div className='col-6'>
+        <div className='row gy-4'>
+          <div className='col-md-6 col-12 text-center'>
             <h1>About Us</h1>
             <p className='mb-5'>Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
             Voluptates minus optio ipsa expedita deleniti pariatur amet 
@@ -24,7 +24,7 @@ const About = () => {
                 cum distinctio dolor, neque adipisci.</p>
                 <NavLink to='/contact' className='about'>Contact Us</NavLink>
           </div>
-          <div className='col-6'>
+          <div className='col-md-6 col-12'>
           <img src={aboutIMG} alt="..." width='100%'/>
         </div>
         </div>

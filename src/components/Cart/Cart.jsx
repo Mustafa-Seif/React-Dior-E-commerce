@@ -1,8 +1,10 @@
 import React from 'react'
+import './cart.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
-import { removeItem } from '../Redux/actions/actions'
-import empty from '../../src/assets/empty-cart.svg'
+import { removeItem } from '../../Redux/actions/actions'
+import empty from '../../../src/assets/empty-cart.svg'
+import { BsFillTrashFill } from "react-icons/bs";
 
 
 const Cart = () => {
@@ -33,7 +35,7 @@ const Cart = () => {
     return(
       <div className="px-4 my-5 bg-light" key={item.id}>
       <div className="container py-4">
-        <button className='btn-close float-end' onClick={()=>handleClose(item)}></button>
+      <div className='float-right position-relative'><BsFillTrashFill className='text-danger trachIcon ' onClick={()=>handleClose(item)}></BsFillTrashFill></div>
         <div className="row justify-content-center">
         <div className="col-md-4">
           <img src={item.image} alt={item.title} height='200px' width='180px' />
