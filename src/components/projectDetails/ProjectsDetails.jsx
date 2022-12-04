@@ -46,9 +46,9 @@ const ProjectsDetails = () => {
 
   return (
     <div className='container'>
-     <div className="row mt-5 align-center gy-4 gx-5"  key={data.id}>
+     <div className="row mt-5 align-center gy-4 gx-5 border"  key={data.id}>
                   <img src={data.image} className=" col-md-4" alt="..." style={{height:"350px"}} />
-                  <div className=" col-md-6" >
+                  <div className=" col-md-8" >
                     <p className="card-title " style={{fontSize:"3rem"}}>{data.title}</p>
                     <p className="card-title " >Category: {data.category}</p>
                     <p className="card-title text-danger" >Rating: {data.rating.rate}</p>

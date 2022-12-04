@@ -4,17 +4,24 @@ import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { AiOutlineHeart } from "react-icons/ai";
 import ToTopIcon from "../ToTopIcon/index";
-import { BsSearch } from "react-icons/bs";
+import { BsSearch,BsFillHeartFill } from "react-icons/bs";
 import Spinner from "react-bootstrap/Spinner";
 
 const Products = () => {
   // liked product
   const [liked, setLiked] = useState(false);
-  const handleLiked = (e, id) => {
-    if (liked === false) {
-      setLiked(!liked);
+
+  const handleLiked = (e, el) => {
+    // let liked = false;
+    if(liked == false){
+      setLiked(true)
       e.target.style.color = "red";
+    }else if(liked == true){
+      setLiked(false)
+    
+      e.target.style.color = "#000";
     }
+   
   };
 
   // get data detais
@@ -26,7 +33,7 @@ const Products = () => {
     axios
       .get("https://fakestoreapi.com/products")
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         setData(res.data);
         setNewData(res.data);
 
@@ -37,7 +44,7 @@ const Products = () => {
       });
   }, []);
 
-  //  handle search 
+  //  handle search
   useEffect(() => {
     if (searchVal) {
       const dataFiltered = data.filter((el, ind) => {
@@ -91,7 +98,7 @@ const Products = () => {
                     <img
                       src={d.image}
                       className="card-img-top"
-                      alt="..."
+                      alt="img-pro"
                       height={"200px"}
                     />
                     <div className="layOut"></div>
@@ -104,16 +111,19 @@ const Products = () => {
                         textOverflow: "ellipsis",
                         whiteSpace: "nowrap",
                         overflow: "hidden",
+                        fontSize:"1.5rem"
+                        
+                        
                       }}
                     >
                       {d.title}
                     </p>
                     <div className="row mb-5">
                       <h5 className="card-text col">${d.price} </h5>
-                      <AiOutlineHeart
+                      <BsFillHeartFill
                         className="col"
                         style={{ fontSize: "1.5rem" }}
-                        onClick={(e) => handleLiked(e, d.id)}
+                        onClick={(e) => handleLiked(e, d)}
                       />
                     </div>
                     <NavLink

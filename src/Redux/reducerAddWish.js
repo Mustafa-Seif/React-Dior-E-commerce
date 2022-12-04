@@ -1,6 +1,6 @@
-const addItem = [];
+const addWish = [];
 
-const reducerAdd = (state = addItem, action) => {
+const reducerAddWish = (state = addWish, action) => {
   switch (action.type) {
     case "ADDITEM":
       return [...state, action.payload];
@@ -20,4 +20,4 @@ const reducerAdd = (state = addItem, action) => {
   }
 };
 
-export default reducerAdd;
+export default reducerAddWish;

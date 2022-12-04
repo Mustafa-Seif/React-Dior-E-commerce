@@ -14,10 +14,20 @@ nav {
   .cart_warpper{
     position: relative;
     span{
-
       position: absolute;
-      top: -.5rem;
+      top: -.6rem;
+      right: -.7rem;
       font-size: .8rem;
+      background-color: red;
+      color: #fff;
+      padding: 0.2rem;
+      height: 1rem;
+      width: 1rem;
+      border-radius: 50%;
+      display: inline-block;
+      text-align: center;
+      line-height: .5rem;
+      
     }
   }
 }

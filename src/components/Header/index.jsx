@@ -63,14 +63,13 @@ const Header = () => {
               
               <Login />
               <Register />
-              <NavLink to="/wishlist">
+              <NavLink to="">
                 <BsSuitHeartFill className="ms-3 me-3 text-dark"></BsSuitHeartFill>
               </NavLink>
               <div className="cart_warpper">
                 <CartBtn />
-                <span className="text-danger">{product.length}</span>
+                <span >{product.length}</span>
               </div>
-              
             </div>
           </div>
         </nav>
