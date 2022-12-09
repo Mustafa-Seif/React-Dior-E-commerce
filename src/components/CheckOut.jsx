@@ -10,7 +10,7 @@ function CheckOut() {
   } = useForm();
   const onSubmit = (data) => console.log(data);
 
-  const product = useSelector((state) => state);
+  const product = useSelector((state) => state.addItem);
   let total = 0;
   const item = (item) => {
     total = total + item.price;
@@ -30,8 +30,8 @@ function CheckOut() {
           <div className="row g-5">
             <div className="col-md-5 col-lg-4 order-md-last">
               <h4 className="d-flex justify-content-between align-items-center mb-3">
-                <span className="text-primary">Your cart</span>
-                <span className="badge bg-primary rounded-pill">
+                <span  style={{color:"#A749FF",fontWeight:"800"}}>Your cart</span>
+                <span className="badge bg-danger rounded-pill">
                   {product.length}
                 </span>
               </h4>
@@ -39,7 +39,7 @@ function CheckOut() {
                 {product.map(item)}
 
                 <li className="list-group-item d-flex justify-content-between">
-                  <span>Total (USD)</span>
+                  <p className="fw-bold text-danger">Total (USD)</p>
                   <strong>${Math.round(total)}</strong>
                 </li>
               </ul>
@@ -58,7 +58,7 @@ function CheckOut() {
               </form>
             </div>
             <div className="col-md-7 col-lg-8">
-              <h4 className="mb-3">Billing address</h4>
+              {/* <p className="mb-3">Billing address</p> */}
               <form
                 className="needs-validation"
                 onSubmit={handleSubmit(onSubmit)}

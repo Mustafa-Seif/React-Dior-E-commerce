@@ -14,9 +14,17 @@ export const removeItem = (data)=>{
 
 }
 
-export const wishList = (data)=>{
+export const addWish = (data)=>{
     return{
-        type:'ADDTOWISHLIST',
+        type:'ADDTOWISH',
+        payload:data
+    }
+
+}
+
+export const removeWish = (data)=>{
+    return{
+        type:'REMOVEWISH',
         payload:data
     }
 

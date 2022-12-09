@@ -1,0 +1,138 @@
+.card{
+  padding: 1rem 0 !important;
+}
+.card-title {
+  font-weight: 300;
+  font-size: 1rem;
+  text-shadow: 0 0 2px #000;
+  padding: 1rem;
+  color: #fff;
+  font-weight: 600;
+  border-top-right-radius: 67.5px;
+
+  background: rgba(0, 0, 0, 0.7);
+}
+.product-card .card {
+  margin: 20px;
+  overflow: hidden;
+}
+
+.card-image .price_card {
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem;
+
+  background-color: #f0534e;
+  display: inline-block;
+  font-weight: 600;
+
+  color: #fff;
+  border-radius: 50%;
+  height: 4rem;
+  width: 4rem;
+  display: flex;
+  display: inline-block;
+  text-align: center;
+  line-height: 4rem;
+  text-decoration: none;
+}
+.product-card .card .card-content {
+  padding: 5px;
+}
+.product-card .card .price {
+  width: 70px;
+  height: 70px;
+  font-weight: 600;
+  font-size: 1.45rem;
+  line-height: 70px;
+  margin: 10px;
+  position: absolute;
+  top: 0;
+  letter-spacing: 0;
+}
+.product-card ul.card-action-buttons {
+  margin: -18px 7px 0 0;
+  text-align: right;
+}
+.product-card ul.card-action-buttons li {
+  display: inline-block;
+  padding-left: 3px;
+  cursor: pointer;
+}
+.product-card ul.card-action-buttons li .shareIcon {
+  background-color: #ffffff;
+  border-radius: 50%;
+  padding: 0.5rem;
+  color: #000;
+  box-shadow: 1px 1px 1px gray;
+}
+.product-card ul.card-action-buttons li .heartIcon {
+  background-color: #eb1212;
+  border-radius: 50%;
+  padding: 0.5rem;
+  color: rgb(255, 255, 255);
+  box-shadow: 1px 1px 1px gray;
+}
+.product-card ul.card-action-buttons li .addIcon {
+  background-color: #a749ff;
+  border-radius: 50%;
+  padding: 0.5rem;
+  color: rgb(255, 255, 255);
+  box-shadow: 1px 1px 1px gray;
+}
+.product {
+  width: 20%;
+  padding: 10px;
+}
+.product .card {
+  margin: 0;
+}
+.product .card .card-content {
+  padding: 5px 10px;
+}
+div.see-more:last-of-type {
+  width: 100%;
+  text-align: center;
+  margin-top: 20px;
+  background-color: #a749ff;
+  padding: .5rem
+}
+
+div.see-more a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.css-8vnh0h-MuiPaper-root-MuiAlert-root {
+  box-shadow: none !important;
+}
+
+#search-wrapper {
+  display: flex;
+  border: 1px solid rgba(0, 0, 0, 0.276);
+  align-items: stretch;
+  border-radius: 50px;
+  background-color: #fff;
+  overflow: hidden;
+  max-width: 400px;
+  box-shadow: 2px 1px 5px 1px rgba(0, 0, 0, 0.273);
+}
+#search {
+  border: none;
+  width: 350px;
+  font-size: 15px;
+}
+#search:focus {
+  outline: none;
+}
+.search-icon {
+  margin: 10px;
+  color: rgba(0, 0, 0, 0.564);
+}
+#search-button {
+  border: none;
+  cursor: pointer;
+  color: #fff;
+  background-color: #a749ff;
+  padding: 0px 10px;
+}

@@ -1,5 +1,5 @@
 import React from "react";
-import "./header.css";
+import "./navBar.css";
 import { NavLink } from "react-router-dom";
 import CartBtn from "../buttons/CartBtn";
 import Login from "../buttons/Login";
@@ -7,13 +7,14 @@ import Register from "../buttons/Register";
 import { BsSearch, BsSuitHeartFill } from "react-icons/bs";
 import { useSelector } from "react-redux";
 
-const Header = () => {
-  const product = useSelector((state) => state);
+const NavBar = () => {
+  const product = useSelector((state) => state.addItem);
+  const wishlist = useSelector((state) => state.addWish);
 
   return (
-    <header>
+    <nav>
       <div className="container">
-        <nav className="navbar navbar-expand-lg navbar-light bg-light">
+        <div className="navbar navbar-expand-lg navbar-light bg-light">
           <div className="container-fluid ">
             <button
               className="navbar-toggler"
@@ -37,7 +38,7 @@ const Header = () => {
               <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                 <li className="nav-item">
                   <NavLink
-                    className="nav-link active"
+                    className="nav-link "
                     aria-current="page"
                     to="/"
                   >
@@ -45,17 +46,17 @@ const Header = () => {
                   </NavLink>
                 </li>
                 <li className="nav-item">
-                  <NavLink className="nav-link active" to="/products">
+                  <NavLink className="nav-link " to="/products">
                     Products
                   </NavLink>
                 </li>
                 <li className="nav-item">
-                  <NavLink className="nav-link active" to="/about">
+                  <NavLink className="nav-link " to="/about">
                     About
                   </NavLink>
                 </li>
                 <li className="nav-item">
-                  <NavLink className="nav-link active" to="/contact">
+                  <NavLink className="nav-link " to="/contact">
                     Contact
                   </NavLink>
                 </li>
@@ -63,19 +64,25 @@ const Header = () => {
               
               <Login />
               <Register />
-              <NavLink to="">
-                <BsSuitHeartFill className="ms-3 me-3 text-dark"></BsSuitHeartFill>
+              <div className="cart_warpper">
+
+              <NavLink to="/wishlist">
+                <BsSuitHeartFill className="  text-dark"></BsSuitHeartFill>
               </NavLink>
+              <span style={{position:"absolute"}}>{wishlist.length}</span>
+              </div>
+
+
               <div className="cart_warpper">
                 <CartBtn />
                 <span >{product.length}</span>
               </div>
             </div>
           </div>
-        </nav>
+        </div>
       </div>
-    </header>
+    </nav>
   );
 };
 
-export default Header;
+export default NavBar;

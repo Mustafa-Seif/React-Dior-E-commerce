@@ -4,7 +4,6 @@ import About from '../src/components/About'
 import Products from '../src/components/Products'
 import Contact from '../src/components/Contact'
 import Footer from '../src/components/Footer/Footer'
-import Header from '../src/components/Header'
 import NoPage from '../src/components/NoPage'
 import { Route, Routes, BrowserRouter } from 'react-router-dom';
 import ProjectsDetails from './components/projectDetails/ProjectsDetails';
@@ -12,6 +11,7 @@ import Cart from './components/Cart/Cart.jsx';
 import CheckOut from './components/CheckOut';
 import ScrollToTop from './components/ScrollToTop';
 import WishList from './components/WishList/WishList';
+import NavBar from './components/NavBar';
 
 
 function App() {
@@ -19,7 +19,7 @@ function App() {
     < >
       <BrowserRouter>
       <ScrollToTop/>
-        <Header />
+        <NavBar />
         <Routes>
           <Route exact path='/' element={<Home />} />
           <Route  path='/about' element={<About />} />

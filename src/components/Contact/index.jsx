@@ -8,7 +8,7 @@ const Contact = () => {
   const onSubmit = (data) => console.log(data);
   return (
     <div className="container mt-5">
-      <div className="row text-center mb-5">
+      <div className="row  mb-5">
         <h1>Contact With Us</h1>
         <hr />
       </div>

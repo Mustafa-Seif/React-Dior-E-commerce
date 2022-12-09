@@ -1,3 +1,11 @@
+nav {
+  position: fixed;
+  z-index: 9;
+  width: 100%;
+  background-color: #fff;
+  box-shadow: -1px 3px 14px 0px grey;
+  top: 0;
+}
 nav h1 {
   font-weight: 800;
   font-family: Abril Fatface, cursive;
@@ -16,7 +24,7 @@ nav .cart_warpper {
 nav .cart_warpper span {
   position: absolute;
   top: -0.6rem;
-  right: -0.7rem;
+  right: -0.6rem;
   font-size: 0.8rem;
   background-color: red;
   color: #fff;
@@ -27,4 +35,4 @@ nav .cart_warpper span {
   display: inline-block;
   text-align: center;
   line-height: 0.5rem;
-}/*# sourceMappingURL=header.css.map */
+}/*# sourceMappingURL=navBar.css.map */
