@@ -23,11 +23,11 @@ const Cart = () => {
   // handle count products
   const [count, setCount] = useState(0);
   const handleIncrease = () => {
-    setCount(count + 1);
+    // setCount(count + 1);
   };
 
   const handleDecrease = () => {
-    count > 1 && setCount(count - 1);
+    // count > 1 && setCount(count - 1);
   };
 
   const items = (item) => {
