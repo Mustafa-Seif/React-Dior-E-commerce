@@ -2,19 +2,21 @@ import React from "react";
 import "./buttons.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
-import LoginIcon from '@mui/icons-material/Login';
+import LoginIcon from "@mui/icons-material/Login";
 import { isLog } from "../../Redux/actions/actions";
+import { NavLink } from "react-router-dom";
 const Login = () => {
-  const isLoged =  useSelector((state) => state.login);
-  const dispatch = useDispatch()
+  const isLoged = useSelector((state) => state.login);
+  const dispatch = useDispatch();
   const {
     register,
     formState: { errors },
     handleSubmit,
   } = useForm();
   const onSubmit = (data) => {
-    window.document.body.style.overflowY="scroll"
-    dispatch(isLog(true))};
+    window.document.body.style.overflowY = "scroll";
+    dispatch(isLog(true));
+  };
   return (
     <>
       {/* <!-- Button trigger modal --> */}
@@ -41,9 +43,9 @@ const Login = () => {
         <div className="modal-dialog">
           <div className="modal-content">
             <div className="modal-header">
-              <h5 className="modal-title" id="exampleModalLabel">
+              <h4 className="modal-title fw-bolder" id="exampleModalLabel">
                 login
-              </h5>
+              </h4>
               <button
                 type="button"
                 className="btn-close"
@@ -70,6 +72,7 @@ const Login = () => {
                 onSubmit={handleSubmit(onSubmit)}
               >
                 <div class="form-group mb-4">
+                <label for="exampleInputEmail1">Email</label>
                   <input
                     type="email"
                     class="form-control"
@@ -127,16 +130,10 @@ const Login = () => {
                     )}
                   </small>
                 </div>
-                <div class="form-check mb-2">
-                  <input
-                    type="checkbox"
-                    class="form-check-input"
-                    id="exampleCheck1"
-                  />
-                  <label class="form-check-label" for="exampleCheck1">
-                    Check me out
-                  </label>
-                </div>
+                <p>
+                  Don't have an account?{" "}
+                  <NavLink to="/signup">Sign up</NavLink>
+                </p>
                 <button type="submit" class="Submit">
                   Submit
                 </button>

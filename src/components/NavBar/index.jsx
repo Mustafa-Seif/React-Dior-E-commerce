@@ -1,15 +1,43 @@
 import React from "react";
 import "./navBar.css";
-import { NavLink } from "react-router-dom";
-import CartBtn from "../buttons/CartBtn";
+import { NavLink, Navigate } from "react-router-dom";
+import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import Login from "../buttons/Login";
 import { useSelector } from "react-redux";
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+// ///////////////////////////////////
+import Stack from "@mui/material/Stack";
+import Snackbar from "@mui/material/Snackbar";
+import MuiAlert from "@mui/material/Alert";
+
+const Alert = React.forwardRef(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
+
 const NavBar = () => {
+  // const [open, setOpen] = React.useState(false);
+  const [isLoged, setIsLoged] = React.useState(false);
+
   const product = useSelector((state) => state.addItem);
   const wishlist = useSelector((state) => state.addWish);
   const login = useSelector((state) => state.login);
+
+  const [state, setState] = React.useState({
+    open: false,
+    vertical: "top",
+    horizontal: "center",
+  });
+  const { vertical, horizontal, open } = state;
+
+  const handleClick = (newState) => () => {
+    setIsLoged(login);
+    setState({ open: true, ...newState });
+  };
+
+  const handleClose = () => {
+    setState({ ...state, open: false });
+  };
 
   return (
     <nav>
@@ -57,28 +85,104 @@ const NavBar = () => {
                 </li>
               </ul>
               <ul className="icon_list ">
-                {login === false && <li>
-                  <Login/>
-                </li>}
-                {login && <li>
-                  <AccountCircleIcon />
-                </li>}
-                <li>
+                {login === false && (
+                  <li>
+                    <Login />
+                  </li>
+                )}
+                {login && (
+                  <li>
+                    <AccountCircleIcon />
+                  </li>
+                )}
+                <li
+                  onClick={handleClick({
+                    vertical: "top",
+                    horizontal: "right",
+                  })}
+                >
                   <div className="cart_warpper">
-                    <NavLink to="/wishlist">
-                      <FavoriteBorderIcon className="  text-dark"></FavoriteBorderIcon>
-                    </NavLink>
+                    {login ? (
+                      <NavLink to="/wishlist">
+                        <FavoriteBorderIcon className="  text-dark"></FavoriteBorderIcon>
+                      </NavLink>
+                    ) : (
+                      <NavLink to="/">
+                        <FavoriteBorderIcon className="  text-dark"></FavoriteBorderIcon>
+                      </NavLink>
+                    )}
                     <span stye={{ position: "absolute" }}>
                       {wishlist.length}
                     </span>
                   </div>
+                  {!isLoged && (
+                    <Stack spacing={2} sx={{ width: "100%" }}>
+                      <Snackbar
+                        open={open}
+                        autoHideDuration={2000}
+                        onClose={handleClose}
+                        anchorOrigin={{ vertical, horizontal }}
+                        key={vertical + horizontal}
+                      >
+                        <Alert
+                          onClose={handleClose}
+                          severity="warning"
+                          sx={{ width: "100%", marginTop: "4rem " }}
+                        >
+                          Please Log In First ...
+                        </Alert>
+                      </Snackbar>
+                    </Stack>
+                  )}
                 </li>
-                <li>
-
-                  <div className="cart_warpper">
-                    <CartBtn />
-                    <span>{product.length}</span>
-                  </div>
+                <li
+                  onClick={handleClick({
+                    vertical: "top",
+                    horizontal: "right",
+                  })}
+                >
+                  {login ? (
+                    <div className="cart_warpper">
+                      <NavLink
+                        to="/cart"
+                        className="sign"
+                        style={{ textDecoration: "none", color: "#000" }}
+                      >
+                        <AddShoppingCartIcon></AddShoppingCartIcon>
+                      </NavLink>
+                      <span>{product.length}</span>
+                    </div>
+                  ) : (
+                    <div className="cart_warpper">
+                      <NavLink
+                        to="/"
+                        className="sign"
+                        style={{ textDecoration: "none", color: "#000" }}
+                      >
+                        <AddShoppingCartIcon></AddShoppingCartIcon>
+                      </NavLink>
+                      <span>{product.length}</span>
+                    </div>
+                  )}
+                  {!isLoged && (
+                    <Stack spacing={2} sx={{ width: "100%" }}>
+                      <Snackbar
+                        open={open}
+                        autoHideDuration={2000}
+                        onClose={handleClose}
+                        anchorOrigin={{ vertical, horizontal }}
+                        key={vertical + horizontal}
+                      >
+                        <Alert
+                          onClose={handleClose}
+                          severity="warning"
+                          sx={{ width: "100%", marginTop: "4rem " }}
+                        >
+                          Please Log In First ...
+                        </Alert>
+                      </Snackbar>
+                    </Stack>
+                  )}
                 </li>
               </ul>
             </div>

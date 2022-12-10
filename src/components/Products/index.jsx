@@ -33,7 +33,7 @@ const Products = () => {
     setOpen(false);
   };
 
-  //////////
+// handle alert 
   const handleClickWish = () => {
     setOpenWish(true);
   };
@@ -64,11 +64,8 @@ const Products = () => {
     axios
       .get("https://fakestoreapi.com/products")
       .then((res) => {
-        console.log(res.data);
         setData(res.data);
         setNewData(res.data);
-
-        // setNewData(res.data)
       })
       .catch((err) => {
         console.log(err);
@@ -168,7 +165,7 @@ const Products = () => {
                           <Stack spacing={2} sx={{ width: "100%" }}>
                             <Snackbar
                               open={openWish}
-                              autoHideDuration={6000}
+                              autoHideDuration={1000}
                               onClose={handleCloseWish}
                             >
                               <Alert
@@ -197,7 +194,7 @@ const Products = () => {
                           <Stack spacing={2} sx={{ width: "100%" }}>
                             <Snackbar
                               open={open}
-                              autoHideDuration={6000}
+                              autoHideDuration={1000}
                               onClose={handleCloseAdd}
                             >
                               <Alert
