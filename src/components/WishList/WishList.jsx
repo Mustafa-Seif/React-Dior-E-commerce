@@ -1,14 +1,35 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { removeWish } from "../../Redux/actions/actions";
+import { removeWish, addItem } from "../../Redux/actions/actions";
 import empty from "../../assets/no-records.svg";
-import { NavLink } from "react-router-dom";
+import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
+/////////////
+import Stack from "@mui/material/Stack";
+import Snackbar from "@mui/material/Snackbar";
+import MuiAlert from "@mui/material/Alert";
+
+const Alert = React.forwardRef(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 
 function WishList() {
+  const [open, setOpen] = React.useState(false);
   const wishlist = useSelector((state) => state.addWish);
   const dispatch = useDispatch();
   const handleRemoveWish = (item) => {
     dispatch(removeWish(item));
+  };
+
+  const handleClickAdd = () => {
+    setOpen(true);
+  };
+
+  const handleCloseAdd = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setOpen(false);
   };
 
   const emptyCart = () => {
@@ -36,6 +57,7 @@ function WishList() {
                   </p>
                 </div>
               </div>
+              {removeWish}
 
               {wishlist.map((pro) => {
                 return (
@@ -58,9 +80,15 @@ function WishList() {
                         <div className="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
                           <h5 className="mb-0">${pro.price}</h5>
                         </div>
-                        <div className="col-md-1 col-lg-1 col-xl-1 text-end">
+                        <div className="col-md-2 col-lg-2 col-xl-2 text-end">
+                          <i onClick={handleClickAdd}>
+                            <AddShoppingCartIcon
+                              className="text-success"
+                              onClick={() => dispatch(addItem(pro))}
+                            />
+                          </i>
                           <i
-                            className="fas fa-trash fa-lg text-danger"
+                            className="fas fa-trash fa-lg text-danger ms-5 "
                             onClick={() => handleRemoveWish(pro)}
                           ></i>
                         </div>
@@ -72,6 +100,21 @@ function WishList() {
             </div>
           </div>
         </div>
+        <Stack spacing={2} sx={{ width: "100%" }}>
+          <Snackbar
+            open={open}
+            autoHideDuration={1000}
+            onClose={handleCloseAdd}
+          >
+            <Alert
+              onClose={handleCloseAdd}
+              severity="success"
+              sx={{ width: "100%", boxShadow: "none" }}
+            >
+              this product added to cart
+            </Alert>
+          </Snackbar>
+        </Stack>
       </section>
     );
   };

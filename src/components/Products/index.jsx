@@ -150,7 +150,7 @@ const Products = () => {
                             href="https://www.facebook.com/sharer/sharer.php?u=https://unrivaled-otter-0d293c.netlify.app/"
                             target="_blank"
                           >
-                            <i className="material-icons shareIcon">share</i>
+                            <i className="material-icons shareIcon text-dark">share</i>
                           </a>
                         </li>
                         <li>

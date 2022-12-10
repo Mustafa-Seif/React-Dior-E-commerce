@@ -81,6 +81,12 @@
   color: rgb(255, 255, 255);
   box-shadow: 1px 1px 1px gray;
 }
+.product-card ul.card-action-buttons li .shareIcon,.heartIcon,.addIcon{
+  transition: 300ms;
+}
+.product-card ul.card-action-buttons li .shareIcon:hover,.heartIcon:hover,.addIcon:hover{
+  opacity: .7;
+}
 .product {
   width: 20%;
   padding: 10px;

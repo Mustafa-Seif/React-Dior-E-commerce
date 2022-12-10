@@ -14,8 +14,16 @@ const ProjectsDetails = () => {
   const [data, setData] = useState([]);
   const [dataArr, setDataArr] = useState([]);
   const [productsFilter, seTproductsFilter] = useState([]);
-
   const [route,setRoute] = useState()
+  const [cartBtn, setcartBtn] = useState("Add To The Cart");
+
+
+  // handle change product 
+
+  const handleChangeProduct =()=>{
+    setRoute(!route)
+    setcartBtn("Add To The Cart")
+  }
   
 
   useEffect(() => {
@@ -46,7 +54,7 @@ const ProjectsDetails = () => {
     seTproductsFilter(FilterPro);
   }, [dataArr, productsFilter]);
 
-  const [cartBtn, setcartBtn] = useState("Add To The Cart");
+  
 
   const dispatch = useDispatch();
 
@@ -224,7 +232,7 @@ const ProjectsDetails = () => {
                 <div style={{ textDecoration: "none", color: "#000", height:"50px" , overflow:"hidden" }}>
                 <NavLink
                   to={`/products/${item.id}`}
-                  onClick={()=>setRoute(!route)}
+                  onClick={handleChangeProduct}
                   style={{ textDecoration: "none", color: "#000" }}
                   class="related-title"
                 >
