@@ -171,7 +171,7 @@ const Products = () => {
                               <Alert
                                 onClose={handleCloseWish}
                                 severity="success"
-                                sx={{ width: "100%" }}
+                                sx={{ width: "100%",boxShadow:"none"}}
                               >
                                 this product added to wish list
                               </Alert>
@@ -200,7 +200,7 @@ const Products = () => {
                               <Alert
                                 onClose={handleCloseAdd}
                                 severity="success"
-                                sx={{ width: "100%" }}
+                                sx={{ width: "100%",boxShadow:"none" }}
                               >
                                 this product added to cart
                               </Alert>
