@@ -1,14 +1,20 @@
 import React from "react";
 import "./buttons.css";
+import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
-
+import LoginIcon from '@mui/icons-material/Login';
+import { isLog } from "../../Redux/actions/actions";
 const Login = () => {
+  const isLoged =  useSelector((state) => state.login);
+  const dispatch = useDispatch()
   const {
     register,
     formState: { errors },
     handleSubmit,
   } = useForm();
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = (data) => {
+    window.document.body.style.overflowY="scroll"
+    dispatch(isLog(true))};
   return (
     <>
       {/* <!-- Button trigger modal --> */}
@@ -20,7 +26,7 @@ const Login = () => {
         data-bs-target="#exampleModal"
       >
         <span>
-          <i className="fa fa-sign-in"></i>{" "}
+          <LoginIcon></LoginIcon>
         </span>
       </button>
 
@@ -30,7 +36,7 @@ const Login = () => {
         id="exampleModal"
         tabIndex="-1"
         aria-labelledby="exampleModalLabel"
-        aria-hidden="true"
+        aria-hidden="fales"
       >
         <div className="modal-dialog">
           <div className="modal-content">
@@ -49,13 +55,13 @@ const Login = () => {
               <button className="btn btn-primary w-100 mb-2 mb-4">
                 <span>
                   <i class="fa fa-google" aria-hidden="true"></i>
-                </span>{" "}
+                </span>
                 Sign in with Google
               </button>
               <button className="btn btn-primary w-100 mb-2">
                 <span>
                   <i class="fa fa-facebook-official"></i>
-                </span>{" "}
+                </span>
                 Sign in with Facebook
               </button>
               <form

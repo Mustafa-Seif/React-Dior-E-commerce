@@ -35,4 +35,9 @@ nav .cart_warpper span {
   display: inline-block;
   text-align: center;
   line-height: 0.5rem;
+}
+nav .icon_list li {
+  display: inline-block;
+  list-style-type: none;
+  margin-left: 1rem;
 }/*# sourceMappingURL=navBar.css.map */

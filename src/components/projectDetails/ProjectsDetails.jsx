@@ -15,6 +15,9 @@ const ProjectsDetails = () => {
   const [dataArr, setDataArr] = useState([]);
   const [productsFilter, seTproductsFilter] = useState([]);
 
+  const [route,setRoute] = useState()
+  
+
   useEffect(() => {
     axios
       .get(`https://fakestoreapi.com/products/${proId.id}`)
@@ -33,7 +36,7 @@ const ProjectsDetails = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [route]);
 
   useEffect(() => {
     // filter products by category
@@ -41,8 +44,6 @@ const ProjectsDetails = () => {
       return el.category === data.category;
     });
     seTproductsFilter(FilterPro);
-    console.log(data);
-    console.log(productsFilter);
   }, [dataArr, productsFilter]);
 
   const [cartBtn, setcartBtn] = useState("Add To The Cart");
@@ -123,14 +124,10 @@ const ProjectsDetails = () => {
 
           <hr />
           <div class="row">
-            <div class="col-md-3">
-              <input type="number" class="form-control" value="1" />
-            </div>
-
-            <div class="col-md-9">
+            <div class="col-12">
               <button
                 onClick={() => handleCart(data)}
-                className="btn addBtn btn-block"
+                className="btn addBtn "
               >
                 {cartBtn}
               </button>
@@ -210,7 +207,10 @@ const ProjectsDetails = () => {
         <div class="related-heading theme-text mb-5">Related Products</div>
 
         <div class="row gx-y">
-          {productsFilter.map((item) => {
+          {productsFilter.length === 0 && <div className="Spinner_parent">
+        <Spinner animation="border" variant="danger" className="spinner" />
+      </div> }
+          { productsFilter.length !== 0 && productsFilter.map((item) => {
             return (
               <div class="col-md-3 gy-4  text-center">
                 <div class="related-product">
@@ -224,6 +224,7 @@ const ProjectsDetails = () => {
                 <div style={{ textDecoration: "none", color: "#000", height:"50px" , overflow:"hidden" }}>
                 <NavLink
                   to={`/products/${item.id}`}
+                  onClick={()=>setRoute(!route)}
                   style={{ textDecoration: "none", color: "#000" }}
                   class="related-title"
                 >

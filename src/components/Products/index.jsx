@@ -131,7 +131,7 @@ const Products = () => {
             {neWdata.length === 0 && emptyCart()}
             {neWdata.map((d) => {
               return (
-                <div className="col-4 pb-3 " key={d.id}>
+                <div className="col-lg-4 col-md-6 col-8 pb-3 " key={d.id}>
                   <div className="product-card ">
                     <div className="card">
                       <div className="card-image">
@@ -152,7 +152,6 @@ const Products = () => {
                           <a
                             href="https://www.facebook.com/sharer/sharer.php?u=https://unrivaled-otter-0d293c.netlify.app/"
                             target="_blank"
-                            className="btn-floating waves-effect waves-light white"
                           >
                             <i className="material-icons shareIcon">share</i>
                           </a>
@@ -225,7 +224,7 @@ const Products = () => {
                           <div style={{ width: "95%", margin: "auto" }}>
                             <div className="text-success">in Stock</div>
                             <div className="see-more">
-                              <NavLink to={`products/${d.id}`}>
+                              <NavLink to={`/products/${d.id}`}>
                                 More details
                               </NavLink>
                             </div>

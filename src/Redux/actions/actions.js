@@ -27,5 +27,12 @@ export const removeWish = (data)=>{
         type:'REMOVEWISH',
         payload:data
     }
+   
+}
 
+export const isLog =(data)=>{
+    return{
+        type:'ISLOG',
+        payload:data
+    }
 }

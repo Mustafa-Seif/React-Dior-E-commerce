@@ -1,5 +1,5 @@
 
-const stories = {addItem:[],addWish:[]}
+const stories = {addItem:[],addWish:[],login:false}
 
 const reducerAddItem = (state = stories, action) => {
   switch (action.type) {
@@ -22,6 +22,9 @@ const reducerAddItem = (state = stories, action) => {
           return x.id !== action.payload.id;
         })};
         break;
+        case "ISLOG":
+          return {...state,login:action.payload};
+          break;
 
       
 

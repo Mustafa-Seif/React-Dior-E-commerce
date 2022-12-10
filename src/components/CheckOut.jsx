@@ -40,7 +40,9 @@ function CheckOut() {
 
                 <li className="list-group-item d-flex justify-content-between">
                   <p className="fw-bold text-danger">Total (USD)</p>
-                  <strong>${Math.round(total)}</strong>
+                  <strong>${Math.floor(total)}</strong>
+                  <small className="text-decoration-line-through fw-bolder">${total}</small>
+
                 </li>
               </ul>
 

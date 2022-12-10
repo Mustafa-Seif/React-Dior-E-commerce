@@ -57,6 +57,7 @@
 .product-card ul.card-action-buttons li {
   display: inline-block;
   padding-left: 3px;
+  margin-left: .5rem;
   cursor: pointer;
 }
 .product-card ul.card-action-buttons li .shareIcon {

@@ -66,21 +66,23 @@
 }
 
 .addBtn {
-  background-color: purple;
-  color: white;
+  background-color: #A749FF !important;
+  color: white !important;
   text-transform: uppercase;
+  
 }
 
 .addBtn:hover {
-  background-color: #500150;
-  color: white;
+  border: solid 1px #A749FF !important;
+  background-color: white !important;
+  color: #A749FF !important;
 }
 
 .related-heading {
   text-align: center;
   font-size: 1.5rem;
-  font-weight: bold;
-  /* color: #464343; */
+  font-weight: 900 !important;
+  color: #A749FF !important;
 }
 
 .details-snippet1 .related-title {

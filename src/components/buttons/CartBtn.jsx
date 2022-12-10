@@ -1,6 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import "./buttons.css";
+import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 
 const CartBtn = () => {
   return (
@@ -9,8 +10,7 @@ const CartBtn = () => {
       className="sign"
       style={{ textDecoration: "none", color: "#000" }}
     >
-      <i class="fa fa-shopping-cart" aria-hidden="true">
-      </i>
+      <AddShoppingCartIcon></AddShoppingCartIcon>
     </NavLink>
   );
 };
