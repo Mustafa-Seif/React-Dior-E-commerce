@@ -132,7 +132,7 @@ const Login = () => {
                 </div>
                 <p>
                   Don't have an account?{" "}
-                  <NavLink to="/signup">Sign up</NavLink>
+                  <NavLink to="/">Sign up</NavLink>
                 </p>
                 <button type="submit" class="Submit">
                   Submit
