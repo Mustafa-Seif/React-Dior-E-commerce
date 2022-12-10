@@ -3,20 +3,22 @@ import "./navBar.css";
 import { NavLink, Navigate } from "react-router-dom";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import Login from "../buttons/Login";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import LogoutIcon from "@mui/icons-material/Logout";
 // ///////////////////////////////////
 import Stack from "@mui/material/Stack";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
+import { isLog } from "../../Redux/actions/actions";
 
 const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
 
 const NavBar = () => {
-  // const [open, setOpen] = React.useState(false);
+  const dispatch = useDispatch();
   const [isLoged, setIsLoged] = React.useState(false);
 
   const product = useSelector((state) => state.addItem);
@@ -91,8 +93,10 @@ const NavBar = () => {
                   </li>
                 )}
                 {login && (
-                  <li>
-                    <AccountCircleIcon />
+                  <li onClick={() => dispatch(isLog(false))}>
+                    <NavLink to="/" className="text-danger">
+                      <LogoutIcon />
+                    </NavLink>
                   </li>
                 )}
                 <li

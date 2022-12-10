@@ -28,7 +28,7 @@ function App() {
           <Route path="/cart" element={<Cart />} />
           <Route path="/checkout" element={<CheckOut />} />
           <Route path="/wishlist" element={<WishList />} />
-          <Route path="/signup" element={<WishList />} />
+          {/* <Route path="/signup" element={<WishList />} /> */}
           <Route path="*" element={<NoPage />} />
         </Routes>
         <Footer />
