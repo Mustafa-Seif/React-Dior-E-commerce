@@ -57,13 +57,13 @@ const Login = () => {
               <button className="btn btn-primary w-100 mb-2 mb-4">
                 <span>
                   <i class="fa fa-google" aria-hidden="true"></i>
-                </span>
+                </span>{" "}
                 Sign in with Google
               </button>
               <button className="btn btn-primary w-100 mb-2">
                 <span>
-                  <i class="fa fa-facebook-official"></i>
-                </span>
+               <i class="fa fa-facebook-official"></i> 
+                </span>{" "}
                 Sign in with Facebook
               </button>
               <form

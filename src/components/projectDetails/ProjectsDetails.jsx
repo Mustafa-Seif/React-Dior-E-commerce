@@ -87,7 +87,7 @@ const ProjectsDetails = () => {
               <img class="img-fluid" src={data.image} alt="Preview" />
             </div>
             <div class="col-md-10">
-              <div class="product-image">
+              <div class="product-image mb-3">
                 <img
                   class="img-fluid "
                   style={{ height: "450px" }}

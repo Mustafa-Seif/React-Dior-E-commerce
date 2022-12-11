@@ -12,14 +12,17 @@ const Contact = () => {
   const onSubmit = (data) => console.log(data);
   return (
     <div className="container mt-5">
-      <div className="row  mb-5">
+      <div className="row  mb-3">
         <h1>Contact With Us</h1>
         <hr />
       </div>
       <div className="row">
+        <div className="col-md-6 col-12 mb-3 border">
+          <img src={aboutIMG} alt="" width="100%" />
+        </div>
         <form
-          style={{ width: "50%" }}
-          className="col-6"
+          // style={{ width: "50%" }}
+          className="col-md-6 col-12"
           onSubmit={handleSubmit(onSubmit)}
         >
           <div class="form-group mb-4">
@@ -83,16 +86,14 @@ const Contact = () => {
             <textarea
               class="form-control"
               id="exampleFormControlTextarea1"
-              rows="3"
+              rows="6"
+              
             ></textarea>
           </div>
           <button type="submit" class="Submit">
             Submit
           </button>
         </form>
-        <div className="col-6">
-          <img src={aboutIMG} alt="" width="100%" />
-        </div>
       </div>
     </div>
   );

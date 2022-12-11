@@ -11,7 +11,8 @@ body{
 h1{
   /* color: blueviolet; */
   font-weight: 800;
-  font-family: Abril Fatface, cursive;
+  font-family: Abril Fatface, cursive ;
+  
 }
 .card{
   transition: all .3s ease ;

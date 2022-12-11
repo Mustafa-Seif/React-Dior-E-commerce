@@ -5,16 +5,23 @@ nav {
   background-color: #fff;
   box-shadow: -1px 3px 14px 0px grey;
     top: 0;
+
+    
   h1 {
     font-weight: 800;
     font-family: Abril Fatface, cursive;
     color: #a749ff;
   }
-  ul {
+  .navbar-nav {
     margin-left: 15%;
     li {
       margin-left: 3rem;
       font-weight: 700;
+      .active{
+        color: #DC3545 !important;
+    
+    
+        }
     }
   }
   .cart_warpper{
@@ -41,5 +48,26 @@ nav {
     display: inline-block;
     list-style-type: none;
     margin-left: 1rem;
+  }
+}
+
+
+////////Media Query////////
+
+@media screen and (max-width: 995px) {
+  nav{
+    ul{
+      text-align: center;
+      margin-left: 0 !important;
+      padding-left: 0;
+      li{
+        margin-left: 0 !important;
+      }
+    }
+    .icon_list{
+      li{
+        margin-left: 1rem;
+      }
+    }
   }
 }

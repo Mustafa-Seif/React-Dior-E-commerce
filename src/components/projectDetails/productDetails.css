@@ -107,3 +107,11 @@
   border: none;
   border-bottom: 4px solid purple;
 }
+
+/* ////////Media Query//////// */
+
+@media screen and (max-width: 995px) {
+  .mini-preview{
+    display: none !important;
+  }
+}

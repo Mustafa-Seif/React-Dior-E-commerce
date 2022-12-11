@@ -128,7 +128,7 @@ const Products = () => {
             {neWdata.length === 0 && emptyCart()}
             {neWdata.map((d) => {
               return (
-                <div className="col-lg-4 col-md-6 col-8 pb-3 " key={d.id}>
+                <div className="col-md-4 " key={d.id}>
                   <div className="product-card ">
                     <div className="card">
                       <div className="card-image">

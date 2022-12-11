@@ -6,11 +6,14 @@ import aboutIMG from "../../assets/5078a05eb1b6847d93383eaa4c0ed500.gif";
 const About = () => {
   return (
     <div className="container mt-5">
-      <div className="row  mb-5">
+      <div className="row  mb-3">
         <h1>About Us</h1>
         <hr />
       </div>
       <div className="row gy-4">
+        <div className="col-md-6 col-12">
+          <img src={aboutIMG} alt="..." width="100%" />
+        </div>
         <div className="col-md-6 col-12 ">
           {/* <h1>About Us</h1> */}
           <p>
@@ -30,9 +33,6 @@ const About = () => {
           <NavLink to="/contact" className="about">
             Contact Us
           </NavLink>
-        </div>
-        <div className="col-md-6 col-12">
-          <img src={aboutIMG} alt="..." width="100%" />
         </div>
       </div>
     </div>

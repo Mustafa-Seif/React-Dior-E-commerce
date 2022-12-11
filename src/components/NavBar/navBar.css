@@ -11,12 +11,15 @@ nav h1 {
   font-family: Abril Fatface, cursive;
   color: #a749ff;
 }
-nav ul {
+nav .navbar-nav {
   margin-left: 15%;
 }
-nav ul li {
+nav .navbar-nav li {
   margin-left: 3rem;
   font-weight: 700;
+}
+nav .navbar-nav li .active {
+  color: #DC3545 !important;
 }
 nav .cart_warpper {
   position: relative;
@@ -40,4 +43,18 @@ nav .icon_list li {
   display: inline-block;
   list-style-type: none;
   margin-left: 1rem;
+}
+
+@media screen and (max-width: 995px) {
+  nav ul {
+    text-align: center;
+    margin-left: 0 !important;
+    padding-left: 0;
+  }
+  nav ul li {
+    margin-left: 0 !important;
+  }
+  nav .icon_list li {
+    margin-left: 1rem;
+  }
 }/*# sourceMappingURL=navBar.css.map */
