@@ -12,6 +12,7 @@ import CheckOut from "./components/CheckOut";
 import ScrollToTop from "./components/ScrollToTop";
 import WishList from "./components/WishList/WishList";
 import NavBar from "./components/NavBar";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
   return (
@@ -25,10 +26,12 @@ function App() {
           <Route path="/products" element={<Products />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/products/:id" element={<ProjectsDetails />} />
+          <Route element={<ProtectedRoute/>}>
           <Route path="/cart" element={<Cart />} />
           <Route path="/checkout" element={<CheckOut />} />
           <Route path="/wishlist" element={<WishList />} />
-          {/* <Route path="/signup" element={<WishList />} /> */}
+          </Route>
+          {/* <Route path="/signup" element={< />} /> */}
           <Route path="*" element={<NoPage />} />
         </Routes>
         <Footer />
