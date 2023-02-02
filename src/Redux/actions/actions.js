@@ -21,6 +21,20 @@ export const addWish = (data)=>{
     }
 
 }
+export const increaseQun = (data)=>{
+    return{
+        type:'INCREASE',
+        payload:data
+    }
+
+}
+export const decreaseQun = (data)=>{
+    return{
+        type:'DECREASE',
+        payload:data
+    }
+
+}
 
 export const removeWish = (data)=>{
     return{

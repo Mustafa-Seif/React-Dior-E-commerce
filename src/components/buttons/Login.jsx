@@ -56,7 +56,7 @@ const Login = () => {
             <div className="modal-body">
               <button className="btn btn-primary w-100 mb-2 mb-4">
                 <span>
-                  <i class="fa fa-google" aria-hidden="true"></i>
+                  <i className="fa fa-google" aria-hidden="true"></i>
                 </span>{" "}
                 Sign in with Google
               </button>
@@ -71,11 +71,11 @@ const Login = () => {
                 className="col-6"
                 onSubmit={handleSubmit(onSubmit)}
               >
-                <div class="form-group mb-4">
-                <label for="exampleInputEmail1">Email</label>
+                <div className="form-group mb-4">
+                <label htmlFor="exampleInputEmail1">Email</label>
                   <input
                     type="email"
-                    class="form-control"
+                    className="form-control"
                     id="exampleInputEmail1"
                     aria-describedby="emailHelp"
                     placeholder="Enter email"
@@ -85,7 +85,7 @@ const Login = () => {
                     })}
                     aria-invalid={errors.eMail ? "true" : "false"}
                   />
-                  <small id="emailHelp" class="form-text text-muted ">
+                  <small id="emailHelp" className="form-text text-muted ">
                     {errors.eMail?.type === "required" && (
                       <p className="text-danger" role="alert">
                         Email Is Required
@@ -98,11 +98,11 @@ const Login = () => {
                     )}
                   </small>
                 </div>
-                <div class="form-group mb-4">
-                  <label for="exampleInputPassword1">Password</label>
+                <div className="form-group mb-4">
+                  <label htmlFor="exampleInputPassword1">Password</label>
                   <input
                     type="password"
-                    class="form-control"
+                    className="form-control"
                     id="exampleInputPassword1"
                     placeholder="Password"
                     {...register("firstName", {
@@ -112,7 +112,7 @@ const Login = () => {
                     })}
                     aria-invalid={errors.firstName ? "true" : "false"}
                   />
-                  <small id="emailHelp" class="form-text text-muted ">
+                  <small id="emailHelp" className="form-text text-muted ">
                     {errors.firstName?.type === "required" && (
                       <p className="text-danger" role="alert">
                         Password Is Required
@@ -134,7 +134,7 @@ const Login = () => {
                   Don't have an account?{" "}
                   <NavLink to="/">Sign up</NavLink>
                 </p>
-                <button type="submit" class="Submit">
+                <button type="submit" className="Submit">
                   Submit
                 </button>
               </form>

@@ -1,9 +1,10 @@
-import { React, useState } from "react";
+import { React, useState,useEffect } from "react";
 import "./cart.css";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
-import { removeItem } from "../../Redux/actions/actions";
+import { increaseQun, removeItem,decreaseQun } from "../../Redux/actions/actions";
 import empty from "../../../src/assets/empty-cart.svg";
+
 
 const Cart = () => {
   const product = useSelector((state) => state.addItem);
@@ -11,7 +12,15 @@ const Cart = () => {
   const handleClose = (item) => {
     dispatch(removeItem(item));
   };
+ 
+  // handle count products
+  const handleIncrease = (pro) => {
+    dispatch(increaseQun(pro))
+  };
+  const handleDecrease = (pro) => {
+    dispatch(decreaseQun(pro))
 
+  };
   const emptyCart = () => {
     return (
       <div className="text-center">
@@ -20,16 +29,7 @@ const Cart = () => {
     );
   };
 
-  // handle count products
-  const [count, setCount] = useState(1);
-  const handleIncrease = () => {
-    // setCount(count + 1);
-  };
-
-  const handleDecrease = () => {
-    // count > 1 && setCount(count - 1);
-  };
-
+  
   const items = (item) => {
     return (
       <section className="h-100" style={{ backgroundColor: "#eee" }}>
@@ -71,7 +71,7 @@ const Cart = () => {
                         <div className="col-md-3 col-lg-3 col-xl-2 d-flex">
                           <button
                             className="btn btn-link px-2"
-                            onClick={handleDecrease}
+                            onClick={()=>handleDecrease(pro)}
                           >
                             <i className="fas fa-minus"></i>
                           </button>
@@ -79,7 +79,7 @@ const Cart = () => {
                           <input
                             id="form1"
                             min="1"
-                            value={count}
+                            value={pro.quantity}
                             name="quantity"
                             type="number"
                             className="form-control form-control-sm"
@@ -87,7 +87,7 @@ const Cart = () => {
 
                           <button
                             className="btn btn-link px-2"
-                            onClick={handleIncrease}
+                            onClick={()=>handleIncrease(pro)}
                           >
                             <i className="fas fa-plus"></i>
                           </button>
