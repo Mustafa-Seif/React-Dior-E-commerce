@@ -9,7 +9,15 @@ export const addWishSlice = createSlice({
   initialState,
   reducers: {
     addItemToWish: (state, action) => {
-      state.value.push(action.payload);
+      if( state.value.find((val)=>val.id ===action.payload.id) === undefined){
+        state.value.push({...action.payload,quantity:1});
+      }else{
+        state.value.forEach((el)=>{
+          if (el.id === action.payload.id){
+            el.quantity++;
+          }
+        })
+      }
     },
     deleteItemFromWish: (state, action) => {
       state.value = state.value.filter((x) => {

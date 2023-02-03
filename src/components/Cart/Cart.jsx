@@ -1,26 +1,32 @@
-import { React } from "react";
+import { React, useState,useEffect } from "react";
 import "./cart.css";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
-// import { increaseQun, removeItem,decreaseQun } from "../../Redux/actions/actions";
-import { deleteItemFromCart } from "../../ReduxToolKit/slices/addItemSlice";
+import { deleteItemFromCart,increaseQuantity,decreaseQuantity } from "../../ReduxToolKit/slices/addItemSlice";
 import empty from "../../../src/assets/empty-cart.svg";
 
-
 const Cart = () => {
-  // GET CART ITEM FROM REDUX TOOLKIT 
+  // GET CART ITEM FROM REDUX TOOLKIT
   const product = useSelector((state) => state.cart.value);
   // REMOVE ITEM FROM CART
   const dispatch = useDispatch();
   const handleClose = (item) => {
     dispatch(deleteItemFromCart(item));
+    SetTotal(0);
+    getTotal();
   };
   // handle count products
   const handleIncrease = (pro) => {
-    // dispatch(increaseQun(pro))
+    dispatch(increaseQuantity(pro))
+    SetTotal(0);
+    getTotal();
+
   };
   const handleDecrease = (pro) => {
-    // dispatch(decreaseQun(pro))
+    dispatch(decreaseQuantity(pro))
+    SetTotal(0);
+    getTotal();
+
   };
   const emptyCart = () => {
     return (
@@ -28,6 +34,20 @@ const Cart = () => {
         <img src={empty} alt="img" width="50%" />
       </div>
     );
+  };
+// GET TOTAL FUNCTION 
+const [total,SetTotal]=useState(0);
+  useEffect(() => {
+    console.log(product)
+    SetTotal(0)
+    getTotal()
+  }, [product])
+  const getTotal=()=>{
+    let count=0;
+    for(let i = 0; i < product.length; i++){
+      count+= product[i].price * product[i].quantity;
+    }
+    SetTotal(Math.round(count));
   };
 
   const items = () => {
@@ -50,7 +70,7 @@ const Cart = () => {
                 </div>
               </div>
 
-              {product.map((pro,inx) => {
+              {product.map((pro, inx) => {
                 return (
                   <div className="card rounded-3 mb-4" key={inx}>
                     <div className="card-body p-4">
@@ -71,7 +91,7 @@ const Cart = () => {
                         <div className="col-md-3 col-lg-3 col-xl-2 d-flex">
                           <button
                             className="btn btn-link px-2"
-                            onClick={()=>handleDecrease(pro)}
+                            onClick={() => handleDecrease(pro)}
                           >
                             <i className="fas fa-minus"></i>
                           </button>
@@ -87,7 +107,7 @@ const Cart = () => {
 
                           <button
                             className="btn btn-link px-2"
-                            onClick={()=>handleIncrease(pro)}
+                            onClick={() => handleIncrease(pro)}
                           >
                             <i className="fas fa-plus"></i>
                           </button>
@@ -106,15 +126,15 @@ const Cart = () => {
                   </div>
                 );
               })}
-
-              <div className="card">
-                <div className="card-body">
+              <div class="card">
+                <div class="card-body d-flex justify-content-between">
                   <NavLink
                     to="/checkout"
                     className="btn btn-danger btn-block btn-lg"
                   >
                     Proceed to Checkout
                   </NavLink>
+                  <div class="fs-2 fw-bolder">Total: ${total} </div>
                 </div>
               </div>
             </div>
