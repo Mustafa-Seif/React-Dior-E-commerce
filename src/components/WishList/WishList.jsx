@@ -1,8 +1,9 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { removeWish, addItem } from "../../Redux/actions/actions";
 import empty from "../../assets/no-records.svg";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
+import { addItemToCart } from "../../ReduxToolKit/slices/addItemSlice";
+import { deleteItemFromWish } from "../../ReduxToolKit/slices/addWishSlice";
 /////////////
 import Stack from "@mui/material/Stack";
 import Snackbar from "@mui/material/Snackbar";
@@ -14,10 +15,10 @@ const Alert = React.forwardRef(function Alert(props, ref) {
 
 function WishList() {
   const [open, setOpen] = React.useState(false);
-  const wishlist = useSelector((state) => state.addWish);
+  const wishlist = useSelector((state) => state.wish.value);
   const dispatch = useDispatch();
   const handleRemoveWish = (item) => {
-    dispatch(removeWish(item));
+    dispatch(deleteItemFromWish(item));
   };
 
   const handleClickAdd = () => {
@@ -57,11 +58,9 @@ function WishList() {
                   </p>
                 </div>
               </div>
-              {removeWish}
-
-              {wishlist.map((pro) => {
+              {wishlist.map((pro,index) => {
                 return (
-                  <div className="card rounded-3 mb-4">
+                  <div className="card rounded-3 mb-4" key={index}>
                     <div className="card-body p-4">
                       <div className="row d-flex justify-content-between align-items-center">
                         <div className="col-md-2 col-lg-2 col-xl-2">
@@ -84,7 +83,7 @@ function WishList() {
                           <i onClick={handleClickAdd}>
                             <AddShoppingCartIcon
                               className="text-success"
-                              onClick={() => dispatch(addItem(pro))}
+                              onClick={() => dispatch(addItemToCart(pro))}
                             />
                           </i>
                           <i

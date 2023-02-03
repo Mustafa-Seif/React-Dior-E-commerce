@@ -1,21 +1,20 @@
 import React from "react";
 import "./buttons.css";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 import LoginIcon from "@mui/icons-material/Login";
-import { isLog } from "../../Redux/actions/actions";
+import { isloged } from "../../ReduxToolKit/slices/authSlice";
 import { NavLink } from "react-router-dom";
 const Login = () => {
-  const isLoged = useSelector((state) => state.login);
   const dispatch = useDispatch();
   const {
     register,
     formState: { errors },
     handleSubmit,
   } = useForm();
-  const onSubmit = (data) => {
+  const onSubmit = () => {
     window.document.body.style.overflowY = "scroll";
-    dispatch(isLog(true));
+    dispatch(isloged(true));
   };
   return (
     <>
@@ -38,7 +37,6 @@ const Login = () => {
         id="exampleModal"
         tabIndex="-1"
         aria-labelledby="exampleModalLabel"
-        aria-hidden="fales"
       >
         <div className="modal-dialog">
           <div className="modal-content">

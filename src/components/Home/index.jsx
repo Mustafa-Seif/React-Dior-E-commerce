@@ -1,10 +1,9 @@
-import React from "react";
+import {useState} from "react";
 import "./home.css";
 import img from "../../assets/img.jpg";
 import img2 from "../../assets/img2.jpg";
 import img3 from "../../assets/img3.jpg";
 import Products from "../Products";
-import { useState } from "react";
 
 const Home = () => {
   const [countDate, setCountDate] = useState("");
@@ -62,7 +61,7 @@ const Home = () => {
         <div className="carousel-inner">
           <div className="carousel-item active">
             <img src={img} className="d-block w-100" alt="..." height="550px" />
-            <div class="carousel-caption d-none d-md-block caption_left">
+            <div className="carousel-caption d-none d-md-block caption_left">
               <h3>Enjoy This Offer Today</h3>
               <h1>
                 New Collection <br />
@@ -77,7 +76,7 @@ const Home = () => {
               alt="..."
               height="550px"
             />
-            <div class="carousel-caption d-none d-md-block caption_center">
+            <div className="carousel-caption d-none d-md-block caption_center">
               {/* <h3>Hot Deal!y</h3> */}
               <h1>
                 New Black Friday <br />
@@ -93,7 +92,7 @@ const Home = () => {
               alt="..."
               height="550px"
             />
-            <div class="carousel-caption d-none d-md-block caption_right">
+            <div className="carousel-caption d-none d-md-block caption_right">
               <h3>Enjoy This Offer Today</h3>
               <h1>
                 New Collection <br />

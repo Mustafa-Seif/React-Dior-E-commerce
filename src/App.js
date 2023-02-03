@@ -14,6 +14,7 @@ import WishList from "./components/WishList/WishList";
 import NavBar from "./components/NavBar";
 import ProtectedRoute from "./components/ProtectedRoute";
 
+
 function App() {
   return (
     <>

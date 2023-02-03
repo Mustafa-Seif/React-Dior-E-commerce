@@ -1,25 +1,26 @@
-import { React, useState,useEffect } from "react";
+import { React } from "react";
 import "./cart.css";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
-import { increaseQun, removeItem,decreaseQun } from "../../Redux/actions/actions";
+// import { increaseQun, removeItem,decreaseQun } from "../../Redux/actions/actions";
+import { deleteItemFromCart } from "../../ReduxToolKit/slices/addItemSlice";
 import empty from "../../../src/assets/empty-cart.svg";
 
 
 const Cart = () => {
-  const product = useSelector((state) => state.addItem);
+  // GET CART ITEM FROM REDUX TOOLKIT 
+  const product = useSelector((state) => state.cart.value);
+  // REMOVE ITEM FROM CART
   const dispatch = useDispatch();
   const handleClose = (item) => {
-    dispatch(removeItem(item));
+    dispatch(deleteItemFromCart(item));
   };
- 
   // handle count products
   const handleIncrease = (pro) => {
-    dispatch(increaseQun(pro))
+    // dispatch(increaseQun(pro))
   };
   const handleDecrease = (pro) => {
-    dispatch(decreaseQun(pro))
-
+    // dispatch(decreaseQun(pro))
   };
   const emptyCart = () => {
     return (
@@ -29,8 +30,7 @@ const Cart = () => {
     );
   };
 
-  
-  const items = (item) => {
+  const items = () => {
     return (
       <section className="h-100" style={{ backgroundColor: "#eee" }}>
         <div className="container h-100 py-5">
@@ -50,9 +50,9 @@ const Cart = () => {
                 </div>
               </div>
 
-              {product.map((pro) => {
+              {product.map((pro,inx) => {
                 return (
-                  <div className="card rounded-3 mb-4">
+                  <div className="card rounded-3 mb-4" key={inx}>
                     <div className="card-body p-4">
                       <div className="row d-flex justify-content-between align-items-center">
                         <div className="col-md-2 col-lg-2 col-xl-2">

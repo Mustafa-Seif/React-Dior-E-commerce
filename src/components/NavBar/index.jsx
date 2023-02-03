@@ -1,6 +1,6 @@
 import React from "react";
 import "./navBar.css";
-import { NavLink, Navigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import Login from "../buttons/Login";
 import { useDispatch, useSelector } from "react-redux";
@@ -11,7 +11,7 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import Stack from "@mui/material/Stack";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
-import { isLog } from "../../Redux/actions/actions";
+import { isloged } from "../../ReduxToolKit/slices/authSlice";
 
 const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
@@ -19,11 +19,11 @@ const Alert = React.forwardRef(function Alert(props, ref) {
 
 const NavBar = () => {
   const dispatch = useDispatch();
-  const [isLoged, setIsLoged] = React.useState(false);
+  const [IsLoged, setIsLoged] = React.useState(false);
 
-  const product = useSelector((state) => state.addItem);
-  const wishlist = useSelector((state) => state.addWish);
-  const login = useSelector((state) => state.login);
+  const product = useSelector((state) => state.cart.value);
+  const wishlist = useSelector((state) => state.wish.value);
+  const login = useSelector((state) => state.auth.value);
 
   const [state, setState] = React.useState({
     open: false,
@@ -93,7 +93,7 @@ const NavBar = () => {
                   </li>
                 )}
                 {login && (
-                  <li onClick={() => dispatch(isLog(false))}>
+                  <li onClick={() => dispatch(isloged(false))}>
                     <NavLink to="/" className="text-danger">
                       <LogoutIcon />
                     </NavLink>
@@ -119,7 +119,7 @@ const NavBar = () => {
                       {wishlist.length}
                     </span>
                   </div>
-                  {!isLoged && (
+                  {!IsLoged && (
                     <Stack spacing={2} sx={{ width: "100%" }}>
                       <Snackbar
                         open={open}
@@ -168,7 +168,7 @@ const NavBar = () => {
                       <span>{product.length}</span>
                     </div>
                   )}
-                  {!isLoged && (
+                  {!IsLoged && (
                     <Stack spacing={2} sx={{ width: "100%" }}>
                       <Snackbar
                         open={open}

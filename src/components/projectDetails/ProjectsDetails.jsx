@@ -4,27 +4,23 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { NavLink } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { addItem, removeItem } from "../../Redux/actions/actions";
+import { useDispatch } from "react-redux";
 import Spinner from "react-bootstrap/Spinner";
+import { addItemToCart } from "../../ReduxToolKit/slices/addItemSlice";
+import { deleteItemFromCart } from "../../ReduxToolKit/slices/addItemSlice";
 
 const ProjectsDetails = () => {
-  const products = useSelector((state) => state.addItem);
   const proId = useParams();
   const [data, setData] = useState([]);
   const [dataArr, setDataArr] = useState([]);
   const [productsFilter, seTproductsFilter] = useState([]);
   const [route,setRoute] = useState()
   const [cartBtn, setcartBtn] = useState("Add To The Cart");
-
-
   // handle change product 
-
   const handleChangeProduct =()=>{
     setRoute(!route)
     setcartBtn("Add To The Cart")
   }
-  
 
   useEffect(() => {
     axios
@@ -35,7 +31,6 @@ const ProjectsDetails = () => {
       .catch((err) => {
         console.log(err);
       });
-
     axios
       .get(`https://fakestoreapi.com/products`)
       .then((res) => {
@@ -54,16 +49,14 @@ const ProjectsDetails = () => {
     seTproductsFilter(FilterPro);
   }, [dataArr, productsFilter]);
 
-  
 
   const dispatch = useDispatch();
-
   const handleCart = (data) => {
     if (cartBtn === "Add To The Cart") {
-      dispatch(addItem(data));
+      dispatch(addItemToCart(data));
       setcartBtn("Remove From The Cart");
     } else {
-      dispatch(removeItem(data));
+      dispatch(deleteItemFromCart(data));
       setcartBtn("Add To The Cart");
     }
   };
@@ -77,19 +70,19 @@ const ProjectsDetails = () => {
   }
 
   return (
-    <div class="container my-5">
-      <div class="row details-snippet1">
-        <div class="col-md-7">
-          <div class="row">
-            <div class="col-md-2 mini-preview">
-              <img class="img-fluid" src={data.image} alt="Preview"  />
-              <img class="img-fluid" src={data.image} alt="Preview" />
-              <img class="img-fluid" src={data.image} alt="Preview" />
+    <div className="container my-5">
+      <div className="row details-snippet1">
+        <div className="col-md-7">
+          <div className="row">
+            <div className="col-md-2 mini-preview">
+              <img className="img-fluid" src={data.image} alt="Preview"  />
+              <img className="img-fluid" src={data.image} alt="Preview" />
+              <img className="img-fluid" src={data.image} alt="Preview" />
             </div>
-            <div class="col-md-10">
-              <div class="product-image mb-3">
+            <div className="col-md-10">
+              <div className="product-image mb-3">
                 <img
-                  class="img-fluid "
+                  className="img-fluid "
                   style={{ height: "450px" }}
                   src={data.image}
                   alt="Main Image"
@@ -98,41 +91,41 @@ const ProjectsDetails = () => {
             </div>
           </div>
         </div>
-        <div class="col-md-5">
-          <div class="category">
-            <span class="theme-text">Category:</span> {data.category}
+        <div className="col-md-5">
+          <div className="category">
+            <span className="theme-text">Category:</span> {data.category}
           </div>
-          <div class="title">{data.title}</div>
-          <div class="ratings my-2">
-            <div class="stars d-flex">
-              <div class="theme-text mr-2">Product Ratings: </div>
+          <div className="title">{data.title}</div>
+          <div className="ratings my-2">
+            <div className="stars d-flex">
+              <div className="theme-text mr-2">Product Ratings: </div>
               <div>&#9733;</div>
               <div>&#9733;</div>
               <div>&#9733;</div>
               <div>&#9733;</div>
               <div>&#9733;</div>
-              <div class="ml-2">({data.rating.rate}) </div>
+              <div className="ml-2">({data.rating.rate}) </div>
             </div>
           </div>
-          <div class="price my-2">
-            ${data.price} <strike class="original-price">$120.00</strike>
+          <div className="price my-2">
+            ${data.price} <strike className="original-price">$120.00</strike>
           </div>
-          <div class="theme-text subtitle">Brief Description:</div>
-          <div class="brief-description">{data.description}</div>
+          <div className="theme-text subtitle">Brief Description:</div>
+          <div className="brief-description">{data.description}</div>
 
           {/* <!-- TO REMOVE COLORS --> */}
           <div>
-            <div class="subtitle my-3 theme-text">Colors:</div>
-            <div class="select-colors d-flex">
-              <div class="color red"></div>
-              <div class="color silver"></div>
-              <div class="color black"></div>
+            <div className="subtitle my-3 theme-text">Colors:</div>
+            <div className="select-colors d-flex">
+              <div className="color red"></div>
+              <div className="color silver"></div>
+              <div className="color black"></div>
             </div>
           </div>
 
           <hr />
-          <div class="row">
-            <div class="col-12">
+          <div className="row">
+            <div className="col-12">
               <button
                 onClick={() => handleCart(data)}
                 className="btn addBtn "
@@ -144,12 +137,12 @@ const ProjectsDetails = () => {
         </div>
       </div>
 
-      <div class="additional-details my-5 text-center">
+      <div className="additional-details my-5 text-center">
         {/* <!-- Nav pills --> */}
-        <ul class="nav nav-tabs justify-content-center">
-          <li class="nav-tabs">
+        <ul className="nav nav-tabs justify-content-center">
+          <li className="nav-tabs">
             <a
-              class="nav-link active"
+              className="nav-link active"
               data-toggle="tab"
               data-bs-toggle="tab"
               href="#home"
@@ -157,7 +150,7 @@ const ProjectsDetails = () => {
               Description
             </a>
           </li>
-          <li class="nav-item">
+          <li className="nav-item">
             <a
               class="nav-link"
               data-toggle="tab"
@@ -167,9 +160,9 @@ const ProjectsDetails = () => {
               Reviews
             </a>
           </li>
-          <li class="nav-item">
+          <li className="nav-item">
             <a
-              class="nav-link"
+              className="nav-link"
               data-toggle="tab"
               data-bs-toggle="tab"
               href="#menu2"
@@ -180,9 +173,9 @@ const ProjectsDetails = () => {
         </ul>
 
         {/* <!-- Tab panes --> */}
-        <div class="tab-content mt-4 mb-3">
-          <div class="tab-pane container active" id="home">
-            <div class="description">
+        <div className="tab-content mt-4 mb-3">
+          <div className="tab-pane container active" id="home">
+            <div className="description">
               Lorem ipsum dolor sit, amet consectetur adipisicing elit.
               Provident magni assumenda consectetur facere eius. Minus
               reprehenderit placeat ullam vel ab eaque sequi impedit, ipsum
@@ -198,32 +191,32 @@ const ProjectsDetails = () => {
               Molestiae corporis temporibus ad?
             </div>
           </div>
-          <div class="tab-pane container fade" id="menu1">
-            <div class="review">
+          <div className="tab-pane container fade" id="menu1">
+            <div className="review">
               <p>PUT REVIEWS DESIGN HERE</p>
             </div>
           </div>
-          <div class="tab-pane container fade" id="menu2">
-            <div class="specification">
+          <div className="tab-pane container fade" id="menu2">
+            <div className="specification">
               <p>PUT SPECIFICATIONS HERE</p>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="related-products details-snippet1">
-        <div class="related-heading theme-text mb-5">Related Products</div>
+      <div className="related-products details-snippet1">
+        <div className="related-heading theme-text mb-5">Related Products</div>
 
-        <div class="row gx-y">
+        <div className="row gx-y">
           {productsFilter.length === 0 && <div className="Spinner_parent">
         <Spinner animation="border" variant="danger" className="spinner" />
       </div> }
           { productsFilter.length !== 0 && productsFilter.map((item) => {
             return (
-              <div class="col-md-3 gy-4  text-center">
-                <div class="related-product">
+              <div className="col-md-3 gy-4  text-center">
+                <div className="related-product">
                   <img
-                    class="img-fluid"
+                    className="img-fluid"
                     src={item.image}
                     alt="Related Product"
                     style={{ height: "200px" , marginBottom:"1rem"}}
@@ -234,7 +227,7 @@ const ProjectsDetails = () => {
                   to={`/products/${item.id}`}
                   onClick={handleChangeProduct}
                   style={{ textDecoration: "none", color: "#000" }}
-                  class="related-title"
+                  className="related-title"
                 >
                   {item.title}
                 </NavLink>

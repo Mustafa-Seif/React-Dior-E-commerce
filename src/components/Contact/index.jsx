@@ -25,10 +25,10 @@ const Contact = () => {
           className="col-md-6 col-12"
           onSubmit={handleSubmit(onSubmit)}
         >
-          <div class="form-group mb-4">
+          <div className="form-group mb-4">
             <input
               type="email"
-              class="form-control"
+              className="form-control"
               id="exampleInputEmail1"
               aria-describedby="emailHelp"
               placeholder="Enter email"
@@ -38,7 +38,7 @@ const Contact = () => {
               })}
               aria-invalid={errors.eMail ? "true" : "false"}
             />
-            <small id="emailHelp" class="form-text text-muted ">
+            <small id="emailHelp" className="form-text text-muted ">
               {errors.eMail?.type === "required" && (
                 <p className="text-danger" role="alert">
                   Email Is Required
@@ -51,10 +51,10 @@ const Contact = () => {
               )}
             </small>
           </div>
-          <div class="form-group mb-4">
+          <div className="form-group mb-4">
             <input
               type="password"
-              class="form-control"
+              className="form-control"
               id="exampleInputPassword1"
               placeholder="Password"
               {...register("firstName", {
@@ -64,7 +64,7 @@ const Contact = () => {
               })}
               aria-invalid={errors.firstName ? "true" : "false"}
             />
-            <small id="emailHelp" class="form-text text-muted ">
+            <small id="emailHelp" className="form-text text-muted ">
               {errors.firstName?.type === "required" && (
                 <p className="text-danger" role="alert">
                   Password Is Required
@@ -82,15 +82,15 @@ const Contact = () => {
               )}
             </small>
           </div>
-          <div class="form-group">
+          <div className="form-group">
             <textarea
-              class="form-control"
+              className="form-control"
               id="exampleFormControlTextarea1"
               rows="6"
               
             ></textarea>
           </div>
-          <button type="submit" class="Submit">
+          <button type="submit" className="Submit">
             Submit
           </button>
         </form>

@@ -3,12 +3,13 @@ import "./products.css";
 import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import ToTopIcon from "../ToTopIcon/index";
-import { BsSearch, BsFillHeartFill } from "react-icons/bs";
+import { BsSearch } from "react-icons/bs";
 import Spinner from "react-bootstrap/Spinner";
 import { useDispatch } from "react-redux";
-import { addWish, addItem } from "../../Redux/actions/actions";
+import { addItemToCart } from "../../ReduxToolKit/slices/addItemSlice";
+import { addItemToWish } from "../../ReduxToolKit/slices/addWishSlice";
 import noResults from '../../assets/searching-data.svg'
-// ///////////////////////////////////
+///////////////SNACKBAR//////////////////////
 import Stack from "@mui/material/Stack";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
@@ -42,17 +43,16 @@ const Products = () => {
     if (reason === "clickaway") {
       return;
     }
-
     setOpenWish(false);
   };
 
   // liked product
   const dispatch = useDispatch();
   const handleWish = (item) => {
-    dispatch(addWish(item));
+    dispatch(addItemToWish(item));
   };
   const handleToCart = (item) => {
-    dispatch(addItem(item));
+    dispatch(addItemToCart(item));
   };
 
   // get data detais
@@ -109,7 +109,7 @@ const Products = () => {
           <div className="col-12 text-center">
             {/* <h1>Products</h1> */}
             <div id="search-wrapper">
-              <BsSearch class="search-icon fas fa-search"></BsSearch>
+              <BsSearch className="search-icon fas fa-search"></BsSearch>
 
               <input
                 type="text"

@@ -8,9 +8,8 @@ function CheckOut() {
     formState: { errors },
     handleSubmit,
   } = useForm();
-  const onSubmit = (data) => console.log(data);
 
-  const product = useSelector((state) => state.addItem);
+  const product = useSelector((state) => state.cart.value);
   let total = 0;
   const item = (item) => {
     total = total + item.price;
@@ -60,10 +59,8 @@ function CheckOut() {
               </form>
             </div>
             <div className="col-md-7 col-lg-8">
-              {/* <p className="mb-3">Billing address</p> */}
               <form
                 className="needs-validation"
-                onSubmit={handleSubmit(onSubmit)}
               >
                 <div className="row g-3">
                   <div className="col-sm-6">
@@ -125,7 +122,7 @@ function CheckOut() {
                         pattern: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
                       })}
                     />
-                    <small  class="form-text text-muted ">
+                    <small  className="form-text text-muted ">
                     {errors.eMail?.type === "required" && (
                       <p className="text-danger" role="alert">
                         Email Is Required
