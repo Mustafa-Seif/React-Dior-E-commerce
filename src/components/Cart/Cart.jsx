@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { deleteItemFromCart,increaseQuantity,decreaseQuantity } from "../../ReduxToolKit/slices/addItemSlice";
 import empty from "../../../src/assets/empty-cart.svg";
-
+import { getAllTotal } from "../../ReduxToolKit/slices/totalSlice";
 const Cart = () => {
   // GET CART ITEM FROM REDUX TOOLKIT
   const product = useSelector((state) => state.cart.value);
@@ -38,10 +38,13 @@ const Cart = () => {
 // GET TOTAL FUNCTION 
 const [total,SetTotal]=useState(0);
   useEffect(() => {
-    console.log(product)
     SetTotal(0)
     getTotal()
   }, [product])
+  useEffect(()=>{
+ // SEND TOTAL TO TOTAL SLICE 
+ dispatch(getAllTotal(total))
+  },[total])
   const getTotal=()=>{
     let count=0;
     for(let i = 0; i < product.length; i++){

@@ -5,7 +5,7 @@ const initialState = {
 };
 
 export const authSlice = createSlice({
-  name: "auth",
+  name: "total",
   initialState,
   reducers: {
     isloged: (state, action) => {
