@@ -35,7 +35,7 @@ function WishList() {
 
   const emptyCart = () => {
     return (
-      <div className="text-center">
+      <div className="text-center" style={{height:'100vh'}}>
         <img src={empty} alt="img" width="50%" />
       </div>
     );

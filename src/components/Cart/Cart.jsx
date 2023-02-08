@@ -20,17 +20,15 @@ const Cart = () => {
     dispatch(increaseQuantity(pro))
     SetTotal(0);
     getTotal();
-
   };
   const handleDecrease = (pro) => {
     dispatch(decreaseQuantity(pro))
     SetTotal(0);
     getTotal();
-
   };
   const emptyCart = () => {
     return (
-      <div className="text-center">
+      <div className="text-center" style={{height:'100vh'}}>
         <img src={empty} alt="img" width="50%" />
       </div>
     );
@@ -52,7 +50,6 @@ const [total,SetTotal]=useState(0);
     }
     SetTotal(Math.round(count));
   };
-
   const items = () => {
     return (
       <section className="h-100" style={{ backgroundColor: "#eee" }}>
@@ -72,7 +69,6 @@ const [total,SetTotal]=useState(0);
                   </p>
                 </div>
               </div>
-
               {product.map((pro, inx) => {
                 return (
                   <div className="card rounded-3 mb-4" key={inx}>
@@ -107,7 +103,6 @@ const [total,SetTotal]=useState(0);
                             type="number"
                             className="form-control form-control-sm"
                           />
-
                           <button
                             className="btn btn-link px-2"
                             onClick={() => handleIncrease(pro)}
