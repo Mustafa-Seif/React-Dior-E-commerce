@@ -22,7 +22,7 @@ const Login = () => {
       <button
         type="button"
         className="sign"
-        style={{ border: "none" }}
+        style={{ border: "none" , background:"#fff"}}
         data-bs-toggle="modal"
         data-bs-target="#exampleModal"
       >

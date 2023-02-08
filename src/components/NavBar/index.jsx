@@ -44,7 +44,7 @@ const NavBar = () => {
   return (
     <nav>
       <div className="container">
-        <div className="navbar navbar-expand-lg navbar-light bg-light">
+        <div className="navbar navbar-expand-lg navbar-light">
           <div className="container-fluid ">
             <button
               className="navbar-toggler"
