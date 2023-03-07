@@ -13,12 +13,14 @@ import ScrollToTop from "./components/ScrollToTop";
 import WishList from "./components/WishList/WishList";
 import NavBar from "./components/NavBar";
 import ProtectedRoute from "./components/ProtectedRoute";
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   return (
     <>
       <BrowserRouter>
+      <ToastContainer />
         <ScrollToTop />
         <NavBar />
         <Routes>

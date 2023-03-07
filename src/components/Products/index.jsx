@@ -9,43 +9,9 @@ import { useDispatch } from "react-redux";
 import { addItemToCart } from "../../ReduxToolKit/slices/addItemSlice";
 import { addItemToWish } from "../../ReduxToolKit/slices/addWishSlice";
 import noResults from '../../assets/searching-data.svg'
-///////////////SNACKBAR//////////////////////
-import Stack from "@mui/material/Stack";
-import Snackbar from "@mui/material/Snackbar";
-import MuiAlert from "@mui/material/Alert";
 
-const Alert = React.forwardRef(function Alert(props, ref) {
-  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
-});
 
 const Products = () => {
-  const [open, setOpen] = React.useState(false);
-  const [openWish, setOpenWish] = React.useState(false);
-
-  const handleClickAdd = () => {
-    setOpen(true);
-  };
-
-  const handleCloseAdd = (event, reason) => {
-    if (reason === "clickaway") {
-      return;
-    }
-
-    setOpen(false);
-  };
-
-// handle alert 
-  const handleClickWish = () => {
-    setOpenWish(true);
-  };
-
-  const handleCloseWish = (event, reason) => {
-    if (reason === "clickaway") {
-      return;
-    }
-    setOpenWish(false);
-  };
-
   // liked product
   const dispatch = useDispatch();
   const handleWish = (item) => {
@@ -101,16 +67,13 @@ const Products = () => {
       </div>
     );
   };
-
   return (
     <div>
       <div className="container py-5">
         <div className="row">
           <div className="col-12 text-center">
-            {/* <h1>Products</h1> */}
             <div id="search-wrapper">
               <BsSearch className="search-icon fas fa-search"></BsSearch>
-
               <input
                 type="text"
                 id="search"
@@ -154,58 +117,25 @@ const Products = () => {
                           </a>
                         </li>
                         <li>
-                          <a className="" onClick={() => handleWish(d)}>
+                          <a  onClick={() => handleWish(d)}>
                             <i
                               className="material-icons like heartIcon"
-                              onClick={handleClickWish}
                             >
                               favorite_border
                             </i>
                           </a>
-                          <Stack spacing={2} sx={{ width: "100%" }}>
-                            <Snackbar
-                              open={openWish}
-                              autoHideDuration={1000}
-                              onClose={handleCloseWish}
-                            >
-                              <Alert
-                                onClose={handleCloseWish}
-                                severity="success"
-                                sx={{ width: "100%",boxShadow:"none"}}
-                              >
-                                this product added to wish list
-                              </Alert>
-                            </Snackbar>
-                          </Stack>
                         </li>
                         <li>
                           <a
                             id="buy"
-                            className=""
                             onClick={() => handleToCart(d)}
                           >
                             <i
                               className="material-icons buy addIcon"
-                              onClick={handleClickAdd}
                             >
                               add_shopping_cart
                             </i>
                           </a>
-                          <Stack spacing={2} sx={{ width: "100%" }}>
-                            <Snackbar
-                              open={open}
-                              autoHideDuration={1000}
-                              onClose={handleCloseAdd}
-                            >
-                              <Alert
-                                onClose={handleCloseAdd}
-                                severity="success"
-                                sx={{ width: "100%",boxShadow:"none" }}
-                              >
-                                this product added to cart
-                              </Alert>
-                            </Snackbar>
-                          </Stack>
                         </li>
                       </ul>
                       <div className="card-content">
@@ -240,5 +170,4 @@ const Products = () => {
     </div>
   );
 };
-
 export default Products;
