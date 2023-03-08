@@ -23,7 +23,7 @@ export const addItemSlice = createSlice({
           pauseOnHover: true,
           draggable: true,
           progress: undefined,
-          theme: "dark",
+          theme: "colored",
         });
       } else {
         state.value.forEach((el) => {
@@ -38,7 +38,7 @@ export const addItemSlice = createSlice({
               pauseOnHover: true,
               draggable: true,
               progress: undefined,
-              theme: "dark",
+              theme: "colored",
             });
           }
         });
@@ -57,7 +57,7 @@ export const addItemSlice = createSlice({
           pauseOnHover: true,
           draggable: true,
           progress: undefined,
-          theme: "dark",
+          theme: "colored",
         });
     },
     increaseQuantity: (state, action) => {

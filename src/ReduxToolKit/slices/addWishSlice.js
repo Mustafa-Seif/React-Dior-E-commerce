@@ -24,7 +24,7 @@ export const addWishSlice = createSlice({
           pauseOnHover: true,
           draggable: true,
           progress: undefined,
-          theme: "dark",
+          theme: "colored",
         });
       } else {
         state.value.forEach((el) => {
@@ -39,7 +39,7 @@ export const addWishSlice = createSlice({
               pauseOnHover: true,
               draggable: true,
               progress: undefined,
-              theme: "dark",
+              theme: "colored",
             });
           }
         });
@@ -58,7 +58,7 @@ export const addWishSlice = createSlice({
           pauseOnHover: true,
           draggable: true,
           progress: undefined,
-          theme: "dark",
+          theme: "colored",
         });
     },
   },
