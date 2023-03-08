@@ -2,6 +2,9 @@ import React from "react";
 import "./contact.css";
 import aboutIMG from "../../assets/contact-us-customer-service-illustration_2175-310.webp";
 import { useForm } from "react-hook-form";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const Contact = () => {
   const {
@@ -9,7 +12,21 @@ const Contact = () => {
     formState: { errors },
     handleSubmit,
   } = useForm();
-  const onSubmit = (data) => console.log(data);
+
+  const onSubmit = (data) => {
+    toast.success('Your massage has been send!', {
+      position: "bottom-left",
+      autoClose: 1000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+      });
+  }
+
+  
   return (
     <div className="container mt-5">
       <div className="row  mb-3">
@@ -21,7 +38,6 @@ const Contact = () => {
           <img src={aboutIMG} alt="" width="100%" />
         </div>
         <form
-          // style={{ width: "50%" }}
           className="col-md-6 col-12"
           onSubmit={handleSubmit(onSubmit)}
         >

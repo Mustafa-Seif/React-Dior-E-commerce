@@ -5,7 +5,6 @@ import "react-toastify/dist/ReactToastify.css";
 const initialState = {
   value: [],
 };
-
 export const addItemSlice = createSlice({
   name: "cart",
   initialState,
@@ -18,7 +17,7 @@ export const addItemSlice = createSlice({
         // FIRE TOAST
         toast.success("The product added to cart!", {
           position: "bottom-left",
-          autoClose: 2000,
+          autoClose: 1000,
           hideProgressBar: false,
           closeOnClick: true,
           pauseOnHover: true,
@@ -33,7 +32,7 @@ export const addItemSlice = createSlice({
             // FIRE TOAST
             toast.info("Product is already exists at cart!", {
               position: "bottom-left",
-              autoClose: 2000,
+              autoClose: 1000,
               hideProgressBar: false,
               closeOnClick: true,
               pauseOnHover: true,
@@ -52,7 +51,7 @@ export const addItemSlice = createSlice({
         // FIRE TOAST
         toast.warning("Product is deleted from cart!", {
           position: "bottom-left",
-          autoClose: 2000,
+          autoClose: 1000,
           hideProgressBar: false,
           closeOnClick: true,
           pauseOnHover: true,

@@ -4,33 +4,13 @@ import empty from "../../assets/no-records.svg";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import { addItemToCart } from "../../ReduxToolKit/slices/addItemSlice";
 import { deleteItemFromWish } from "../../ReduxToolKit/slices/addWishSlice";
-/////////////
-import Stack from "@mui/material/Stack";
-import Snackbar from "@mui/material/Snackbar";
-import MuiAlert from "@mui/material/Alert";
 
-const Alert = React.forwardRef(function Alert(props, ref) {
-  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
-});
 
 function WishList() {
-  const [open, setOpen] = React.useState(false);
   const wishlist = useSelector((state) => state.wish.value);
   const dispatch = useDispatch();
   const handleRemoveWish = (item) => {
     dispatch(deleteItemFromWish(item));
-  };
-
-  const handleClickAdd = () => {
-    setOpen(true);
-  };
-
-  const handleCloseAdd = (event, reason) => {
-    if (reason === "clickaway") {
-      return;
-    }
-
-    setOpen(false);
   };
 
   const emptyCart = () => {
@@ -80,7 +60,7 @@ function WishList() {
                           <h5 className="mb-0">${pro.price}</h5>
                         </div>
                         <div className="col-md-2 col-lg-2 col-xl-2 text-end">
-                          <i onClick={handleClickAdd}>
+                          <i>
                             <AddShoppingCartIcon
                               className="text-success"
                               onClick={() => dispatch(addItemToCart(pro))}
@@ -99,21 +79,6 @@ function WishList() {
             </div>
           </div>
         </div>
-        <Stack spacing={2} sx={{ width: "100%" }}>
-          <Snackbar
-            open={open}
-            autoHideDuration={1000}
-            onClose={handleCloseAdd}
-          >
-            <Alert
-              onClose={handleCloseAdd}
-              severity="success"
-              sx={{ width: "100%", boxShadow: "none" }}
-            >
-              this product added to cart
-            </Alert>
-          </Snackbar>
-        </Stack>
       </section>
     );
   };

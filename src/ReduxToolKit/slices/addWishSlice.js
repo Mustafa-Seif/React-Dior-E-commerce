@@ -18,7 +18,7 @@ export const addWishSlice = createSlice({
         // FIRE TOAST
         toast.success("The product added to wishes!", {
           position: "bottom-left",
-          autoClose: 2000,
+          autoClose: 1000,
           hideProgressBar: false,
           closeOnClick: true,
           pauseOnHover: true,
@@ -33,7 +33,7 @@ export const addWishSlice = createSlice({
             // FIRE TOAST
             toast.info("Already exists at wishes!", {
               position: "bottom-left",
-              autoClose: 2000,
+              autoClose: 1000,
               hideProgressBar: false,
               closeOnClick: true,
               pauseOnHover: true,
@@ -52,7 +52,7 @@ export const addWishSlice = createSlice({
         // FIRE TOAST
         toast.warning("Product is deleted from wishes!", {
           position: "bottom-left",
-          autoClose: 2000,
+          autoClose: 1000,
           hideProgressBar: false,
           closeOnClick: true,
           pauseOnHover: true,
