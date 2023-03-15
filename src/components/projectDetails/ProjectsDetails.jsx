@@ -8,7 +8,8 @@ import { useDispatch } from "react-redux";
 import Spinner from "react-bootstrap/Spinner";
 import { addItemToCart } from "../../ReduxToolKit/slices/addItemSlice";
 import { deleteItemFromCart } from "../../ReduxToolKit/slices/addItemSlice";
-
+import 'react-medium-image-zoom/dist/styles.css'
+import Zoom from 'react-medium-image-zoom'
 const ProjectsDetails = () => {
   const proId = useParams();
   const [data, setData] = useState([]);
@@ -81,12 +82,15 @@ const ProjectsDetails = () => {
             </div>
             <div className="col-md-10">
               <div className="product-image mb-3">
-                <img
+              <Zoom>
+                  <img
                   className="img-fluid "
                   style={{ height: "450px" }}
                   src={data.image}
                   alt="Main Image"
                 />
+              </Zoom>
+              
               </div>
             </div>
           </div>
