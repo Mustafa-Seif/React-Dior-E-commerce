@@ -10,6 +10,8 @@ import { addItemToCart } from "../../ReduxToolKit/slices/addItemSlice";
 import { deleteItemFromCart } from "../../ReduxToolKit/slices/addItemSlice";
 import 'react-medium-image-zoom/dist/styles.css'
 import Zoom from 'react-medium-image-zoom'
+import Rating from '@mui/material/Rating';
+
 const ProjectsDetails = () => {
   const proId = useParams();
   const [data, setData] = useState([]);
@@ -17,6 +19,7 @@ const ProjectsDetails = () => {
   const [productsFilter, seTproductsFilter] = useState([]);
   const [route,setRoute] = useState()
   const [cartBtn, setcartBtn] = useState("Add To The Cart");
+  
   // handle change product 
   const handleChangeProduct =()=>{
     setRoute(!route)
@@ -103,11 +106,7 @@ const ProjectsDetails = () => {
           <div className="ratings my-2">
             <div className="stars d-flex">
               <div className="theme-text mr-2">Product Ratings: </div>
-              <div>&#9733;</div>
-              <div>&#9733;</div>
-              <div>&#9733;</div>
-              <div>&#9733;</div>
-              <div>&#9733;</div>
+              <Rating name="read-only" value={data.rating.rate} readOnly />
               <div className="ml-2">({data.rating.rate}) </div>
             </div>
           </div>

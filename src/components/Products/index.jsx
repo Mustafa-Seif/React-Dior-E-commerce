@@ -9,6 +9,7 @@ import { useDispatch } from "react-redux";
 import { addItemToCart } from "../../ReduxToolKit/slices/addItemSlice";
 import { addItemToWish } from "../../ReduxToolKit/slices/addWishSlice";
 import noResults from '../../assets/searching-data.svg'
+import Rating from '@mui/material/Rating';
 
 
 const Products = () => {
@@ -30,6 +31,7 @@ const Products = () => {
     axios
       .get("https://fakestoreapi.com/products")
       .then((res) => {
+        // console.log(res.data)
         setData(res.data);
         setNewData(res.data);
       })
@@ -96,7 +98,6 @@ const Products = () => {
                     <div className="card">
                       <div className="card-image">
                         <span className="price_card">{d.price} $</span>
-
                         <img
                           src={d.image}
                           alt="product-img"
@@ -140,16 +141,19 @@ const Products = () => {
                       </ul>
                       <div className="card-content">
                         <div className="row">
-                          <div className="col" style={{ height: "100px" }}>
-                            <p>
+                          <div className="col">
+                            <p style={{ whiteSpace:"nowrap", textOverflow:"ellipsis" , overflow:"hidden"}}>
                               <strong>Description:</strong> <br />
                               {d.title}
                             </p>
                           </div>
                         </div>
                         <div className="row">
-                          <div style={{ width: "95%", margin: "auto" }}>
-                            <div className="text-success">in Stock</div>
+                          <div className="col-12">
+                          <Rating name="read-only" value={d.rating.rate} readOnly />
+                          </div>
+                          <div className="col-12">
+                            {d.rating.count ? <div className="text-success">In Stock ({d.rating.count})</div>: <div className="text-danger">Out Of Stock</div>}
                             <div className="see-more">
                               <NavLink to={`/products/${d.id}`}>
                                 More details
