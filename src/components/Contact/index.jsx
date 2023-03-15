@@ -2,10 +2,10 @@ import React from "react";
 import "./contact.css";
 import aboutIMG from "../../assets/contact-us-customer-service-illustration_2175-310.webp";
 import { useForm } from "react-hook-form";
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-
-
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import TextField from "@mui/material/TextField";
+import { TextareaAutosize } from '@mui/base';
 const Contact = () => {
   const {
     register,
@@ -14,7 +14,7 @@ const Contact = () => {
   } = useForm();
 
   const onSubmit = (data) => {
-    toast.success('Your massage has been send!', {
+    toast.success("Your massage has been send!", {
       position: "bottom-left",
       autoClose: 1000,
       hideProgressBar: false,
@@ -23,10 +23,9 @@ const Contact = () => {
       draggable: true,
       progress: undefined,
       theme: "colored",
-      });
-  }
+    });
+  };
 
-  
   return (
     <div className="container mt-5">
       <div className="row  mb-3">
@@ -37,12 +36,14 @@ const Contact = () => {
         <div className="col-md-6 col-12 mb-3 border">
           <img src={aboutIMG} alt="" width="100%" />
         </div>
-        <form
-          className="col-md-6 col-12"
-          onSubmit={handleSubmit(onSubmit)}
-        >
+        <form className="col-md-6 col-12" onSubmit={handleSubmit(onSubmit)}>
           <div className="form-group mb-4">
-            <input
+            {/* <input
+           
+            /> */}
+            <TextField
+              label="Name"
+              variant="filled"
               type="email"
               className="form-control"
               id="exampleInputEmail1"
@@ -56,19 +57,22 @@ const Contact = () => {
             />
             <small id="emailHelp" className="form-text text-muted ">
               {errors.eMail?.type === "required" && (
-                <p className="text-danger" role="alert">
+                <small className="text-danger" role="alert">
                   Email Is Required
-                </p>
+                </small>
               )}
               {errors.eMail?.type === "pattern" && (
-                <p className="text-danger" role="alert">
+                <small className="text-danger" role="alert">
                   Invalid Email... Please Write Valid Email
-                </p>
+                </small>
               )}
             </small>
           </div>
           <div className="form-group mb-4">
-            <input
+            <TextField
+              TextField
+              label="Email"
+              variant="filled"
               type="password"
               className="form-control"
               id="exampleInputPassword1"
@@ -82,29 +86,31 @@ const Contact = () => {
             />
             <small id="emailHelp" className="form-text text-muted ">
               {errors.firstName?.type === "required" && (
-                <p className="text-danger" role="alert">
+                <small className="text-danger" role="alert">
                   Password Is Required
-                </p>
+                </small>
               )}
               {errors.firstName?.type === "minLength" && (
-                <p className="text-danger" role="alert">
+                <small className="text-danger" role="alert">
                   Min Length Is 6
-                </p>
+                </small>
               )}
               {errors.firstName?.type === "maxLength" && (
-                <p className="text-danger" role="alert">
+                <small className="text-danger" role="alert">
                   Max Length Is 10
-                </p>
+                </small>
               )}
             </small>
           </div>
           <div className="form-group">
-            <textarea
-              className="form-control"
-              id="exampleFormControlTextarea1"
-              rows="6"
-              
-            ></textarea>
+          <TextField
+          id="filled-multiline-static"
+          label="Massage"
+          multiline
+          rows={4}
+          variant="filled"
+          className="form-control"
+        />
           </div>
           <button type="submit" className="Submit">
             Submit

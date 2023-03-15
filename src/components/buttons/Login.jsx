@@ -5,6 +5,8 @@ import { useForm } from "react-hook-form";
 import LoginIcon from "@mui/icons-material/Login";
 import { isloged } from "../../ReduxToolKit/slices/authSlice";
 import { NavLink } from "react-router-dom";
+import TextField from "@mui/material/TextField";
+
 const Login = () => {
   const dispatch = useDispatch();
   const {
@@ -22,7 +24,7 @@ const Login = () => {
       <button
         type="button"
         className="sign"
-        style={{ border: "none" , background:"#fff"}}
+        style={{ border: "none", background: "#fff" }}
         data-bs-toggle="modal"
         data-bs-target="#exampleModal"
       >
@@ -60,7 +62,7 @@ const Login = () => {
               </button>
               <button className="btn btn-primary w-100 mb-2">
                 <span>
-               <i class="fa fa-facebook-official"></i> 
+                  <i class="fa fa-facebook-official"></i>
                 </span>{" "}
                 Sign in with Facebook
               </button>
@@ -70,8 +72,9 @@ const Login = () => {
                 onSubmit={handleSubmit(onSubmit)}
               >
                 <div className="form-group mb-4">
-                <label htmlFor="exampleInputEmail1">Email</label>
-                  <input
+                  <TextField
+                    variant="filled"
+                    label="Name"
                     type="email"
                     className="form-control"
                     id="exampleInputEmail1"
@@ -83,22 +86,23 @@ const Login = () => {
                     })}
                     aria-invalid={errors.eMail ? "true" : "false"}
                   />
-                  <small id="emailHelp" className="form-text text-muted ">
+                  <div id="emailHelp" className="form-text text-muted ">
                     {errors.eMail?.type === "required" && (
-                      <p className="text-danger" role="alert">
+                      <small className="text-danger" role="alert">
                         Email Is Required
-                      </p>
+                      </small>
                     )}
                     {errors.eMail?.type === "pattern" && (
-                      <p className="text-danger" role="alert">
+                      <small className="text-danger" role="alert">
                         Invalid Email... Please Write Valid Email
-                      </p>
+                      </small>
                     )}
-                  </small>
+                  </div>
                 </div>
                 <div className="form-group mb-4">
-                  <label htmlFor="exampleInputPassword1">Password</label>
-                  <input
+                  <TextField
+                    variant="filled"
+                    label="Password"
                     type="password"
                     className="form-control"
                     id="exampleInputPassword1"
@@ -129,8 +133,7 @@ const Login = () => {
                   </small>
                 </div>
                 <p>
-                  Don't have an account?{" "}
-                  <NavLink to="/">Sign up</NavLink>
+                  Don't have an account? <NavLink to="/">Sign up</NavLink>
                 </p>
                 <button type="submit" className="Submit">
                   Submit
