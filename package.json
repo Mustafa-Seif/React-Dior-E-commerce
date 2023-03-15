@@ -28,6 +28,7 @@
     "redux": "^4.2.0",
     "sass": "^1.58.3",
     "semantic-ui-react": "^2.1.4",
+    "sweetalert2": "^11.7.3",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

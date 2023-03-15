@@ -8,6 +8,8 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { isloged } from "../../ReduxToolKit/slices/authSlice";
 import { toast } from "react-toastify";
+import Swal from 'sweetalert2';
+import { Route } from "react-router-dom";
 
 const NavBar = () => {
   const dispatch = useDispatch();
@@ -31,6 +33,24 @@ const NavBar = () => {
     })) : true)
   }
 
+   // SIGN OUT
+   const signOut = ()=>{
+    // CHANGE SIGN STATUS
+    Swal.fire({
+      text: 'Are you sure you want sign out?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#A749FF',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes'
+    })
+    .then((result) => {
+      if (result.isConfirmed) {
+        dispatch(isloged(false))
+        Route('/')
+      }
+    })
+  }
   return (
     <nav>
       <div className="container">
@@ -83,7 +103,8 @@ const NavBar = () => {
                   </li>
                 )}
                 {_islogin && (
-                  <li onClick={() => dispatch(isloged(false))}>
+                  // <li onClick={() => dispatch(isloged(false))}>
+                  <li onClick={signOut}>
                     <NavLink to="/" className="text-danger">
                       <LogoutIcon />
                     </NavLink>
