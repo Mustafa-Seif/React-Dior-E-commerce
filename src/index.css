@@ -33,3 +33,7 @@ h1{
   background-color: #A749FF!important;
 }
 
+.Toastify__toast-body {
+  font-size: 15px; /* Replace with your desired font size */
+}
+

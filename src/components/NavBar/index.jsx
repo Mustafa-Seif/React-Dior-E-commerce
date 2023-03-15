@@ -21,7 +21,7 @@ const NavBar = () => {
   // CKECK IS LOGIN OR NOT ON CLICK
   const checkAuth = ()=>{
     return (!_islogin ?  (     // FIRE TOAST
-    toast.info("Please login first!", {
+    toast.info("Please login first !", {
       position: "bottom-left",
       autoClose: 1000,
       hideProgressBar: false,
