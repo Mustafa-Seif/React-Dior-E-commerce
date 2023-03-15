@@ -5,41 +5,31 @@ import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import Login from "../buttons/Login";
 import { useDispatch, useSelector } from "react-redux";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import LogoutIcon from "@mui/icons-material/Logout";
-// ///////////////////////////////////
-import Stack from "@mui/material/Stack";
-import Snackbar from "@mui/material/Snackbar";
-import MuiAlert from "@mui/material/Alert";
 import { isloged } from "../../ReduxToolKit/slices/authSlice";
-
-const Alert = React.forwardRef(function Alert(props, ref) {
-  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
-});
+import { toast } from "react-toastify";
 
 const NavBar = () => {
   const dispatch = useDispatch();
-  const [IsLoged, setIsLoged] = React.useState(false);
-
   const product = useSelector((state) => state.cart.value);
   const wishlist = useSelector((state) => state.wish.value);
-  const login = useSelector((state) => state.auth.value);
+  const _islogin = useSelector((state) => state.auth.value);
 
-  const [state, setState] = React.useState({
-    open: false,
-    vertical: "top",
-    horizontal: "center",
-  });
-  const { vertical, horizontal, open } = state;
 
-  const handleClick = (newState) => () => {
-    setIsLoged(login);
-    setState({ open: true, ...newState });
-  };
-
-  const handleClose = () => {
-    setState({ ...state, open: false });
-  };
+  // CKECK IS LOGIN OR NOT ON CLICK
+  const checkAuth = ()=>{
+    return (!_islogin ?  (     // FIRE TOAST
+    toast.info("Please login first!", {
+      position: "bottom-left",
+      autoClose: 1000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+    })) : true)
+  }
 
   return (
     <nav>
@@ -87,106 +77,39 @@ const NavBar = () => {
                 </li>
               </ul>
               <ul className="icon_list ">
-                {login === false && (
+                {!_islogin && (
                   <li>
                     <Login />
                   </li>
                 )}
-                {login && (
+                {_islogin && (
                   <li onClick={() => dispatch(isloged(false))}>
                     <NavLink to="/" className="text-danger">
                       <LogoutIcon />
                     </NavLink>
                   </li>
                 )}
-                <li
-                  onClick={handleClick({
-                    vertical: "top",
-                    horizontal: "right",
-                  })}
-                >
+                <li onClick={checkAuth}>
                   <div className="cart_warpper">
-                    {login ? (
-                      <NavLink to="/wishlist">
-                        <FavoriteBorderIcon className="  text-dark"></FavoriteBorderIcon>
-                      </NavLink>
-                    ) : (
-                      <NavLink to="/">
-                        <FavoriteBorderIcon className="  text-dark"></FavoriteBorderIcon>
-                      </NavLink>
-                    )}
+                    <NavLink to="/wishlist">
+                      <FavoriteBorderIcon className="  text-dark"></FavoriteBorderIcon>
+                    </NavLink>
                     <span stye={{ position: "absolute" }}>
                       {wishlist.length}
                     </span>
                   </div>
-                  {!IsLoged && (
-                    <Stack spacing={2} sx={{ width: "100%" }}>
-                      <Snackbar
-                        open={open}
-                        autoHideDuration={2000}
-                        onClose={handleClose}
-                        anchorOrigin={{ vertical, horizontal }}
-                        key={vertical + horizontal}
-                      >
-                        <Alert
-                          onClose={handleClose}
-                          severity="warning"
-                          sx={{ width: "100%", marginTop: "4rem " }}
-                        >
-                          Please Log In First ...
-                        </Alert>
-                      </Snackbar>
-                    </Stack>
-                  )}
                 </li>
-                <li
-                  onClick={handleClick({
-                    vertical: "top",
-                    horizontal: "right",
-                  })}
-                >
-                  {login ? (
-                    <div className="cart_warpper">
-                      <NavLink
-                        to="/cart"
-                        className="sign"
-                        style={{ textDecoration: "none", color: "#000" }}
-                      >
-                        <AddShoppingCartIcon></AddShoppingCartIcon>
-                      </NavLink>
-                      <span>{product.length}</span>
-                    </div>
-                  ) : (
-                    <div className="cart_warpper">
-                      <NavLink
-                        to="/"
-                        className="sign"
-                        style={{ textDecoration: "none", color: "#000" }}
-                      >
-                        <AddShoppingCartIcon></AddShoppingCartIcon>
-                      </NavLink>
-                      <span>{product.length}</span>
-                    </div>
-                  )}
-                  {!IsLoged && (
-                    <Stack spacing={2} sx={{ width: "100%" }}>
-                      <Snackbar
-                        open={open}
-                        autoHideDuration={2000}
-                        onClose={handleClose}
-                        anchorOrigin={{ vertical, horizontal }}
-                        key={vertical + horizontal}
-                      >
-                        <Alert
-                          onClose={handleClose}
-                          severity="warning"
-                          sx={{ width: "100%", marginTop: "4rem " }}
-                        >
-                          Please Log In First ...
-                        </Alert>
-                      </Snackbar>
-                    </Stack>
-                  )}
+                <li  onClick={checkAuth}>
+                  <div className="cart_warpper">
+                    <NavLink
+                      to="/cart"
+                      className="sign"
+                      style={{ textDecoration: "none", color: "#000" }}
+                    >
+                      <AddShoppingCartIcon></AddShoppingCartIcon>
+                    </NavLink>
+                    <span>{product.length}</span>
+                  </div>
                 </li>
               </ul>
             </div>
