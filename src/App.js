@@ -23,6 +23,7 @@ function App() {
       <ToastContainer />
         <ScrollToTop />
         <NavBar />
+        <div style={{minHeight:'90vh'}}>
         <Routes>
           <Route exact path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
@@ -37,6 +38,7 @@ function App() {
           {/* <Route path="/signup" element={< />} /> */}
           <Route path="*" element={<NoPage />} />
         </Routes>
+        </div>
         <Footer />
       </BrowserRouter>
     </>
