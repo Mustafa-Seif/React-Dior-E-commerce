@@ -236,12 +236,7 @@ const ProjectsDetails = () => {
                 </NavLink>
                 </div>
                 <div className="d-flex justify-content-center">
-                  <div>&#9733;</div>
-                  <div>&#9733;</div>
-                  <div>&#9733;</div>
-                  <div>&#9733;</div>
-                  <div>&#9733;</div>
-
+                <Rating name="read-only" value={item.rating.rate} readOnly />
                   ({item.rating.rate})
                 </div>
               </div>
