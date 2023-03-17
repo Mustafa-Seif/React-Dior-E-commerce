@@ -14,7 +14,8 @@ const Login = () => {
     formState: { errors },
     handleSubmit,
   } = useForm();
-  const onSubmit = () => {
+  const onSubmit = (data) => {
+    console.log(data)
     window.document.body.style.overflowY = "scroll";
     dispatch(isloged(true));
   };

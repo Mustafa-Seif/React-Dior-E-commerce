@@ -65,7 +65,7 @@ const ProjectsDetails = () => {
     }
   };
 
-  if (data.length === 0) {
+  if (!data.length) {
     return (
       <div className="Spinner_parent">
         <Spinner animation="border" variant="danger" className="spinner" />

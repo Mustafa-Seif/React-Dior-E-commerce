@@ -2,7 +2,7 @@ import React from "react";
 import "./navBar.css";
 import { NavLink } from "react-router-dom";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
-import Login from "../buttons/Login";
+import Login from "../auth/Login";
 import { useDispatch, useSelector } from "react-redux";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import LogoutIcon from "@mui/icons-material/Logout";

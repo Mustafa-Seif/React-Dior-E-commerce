@@ -90,7 +90,7 @@ const Products = () => {
         </div>
         <div className="container">
           <div className="row justify-content-around gy-5">
-            {neWdata.length === 0 && emptyCart()}
+           { !neWdata.length  && emptyCart()}
             {neWdata.map((d) => {
               return (
                 <div className="col-md-4 " key={d.id}>

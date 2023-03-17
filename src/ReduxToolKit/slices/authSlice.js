@@ -27,7 +27,7 @@ export const authSlice = createSlice({
       }
       else if(!action.payload){
           // FIRE TOAST
-          toast.info("sign out", {
+          toast.info("Sign out", {
             position: "bottom-left",
             autoClose: 1000,
             hideProgressBar: false,
