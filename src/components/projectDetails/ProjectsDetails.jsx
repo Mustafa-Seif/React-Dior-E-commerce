@@ -2,70 +2,67 @@ import React from "react";
 import "./productDetails.css";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import axios from "axios";
 import { NavLink } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Spinner from "react-bootstrap/Spinner";
-import { addItemToCart } from "../../ReduxToolKit/slices/addItemSlice";
-import { deleteItemFromCart } from "../../ReduxToolKit/slices/addItemSlice";
-import 'react-medium-image-zoom/dist/styles.css'
-import Zoom from 'react-medium-image-zoom'
-import Rating from '@mui/material/Rating';
+import { addItemToCart } from "../../ReduxToolKit/slices/cartSlice";
+import { deleteItemFromCart } from "../../ReduxToolKit/slices/cartSlice";
+import "react-medium-image-zoom/dist/styles.css";
+import Zoom from "react-medium-image-zoom";
+import Rating from "@mui/material/Rating";
+import { getDataAsyncById } from "../../ReduxToolKit/slices/getDataByIdSlice";
+import { getDataAsync } from "../../ReduxToolKit/slices/getDataSlice";
 
 const ProjectsDetails = () => {
   const proId = useParams();
-  const [data, setData] = useState([]);
-  const [dataArr, setDataArr] = useState([]);
   const [productsFilter, seTproductsFilter] = useState([]);
-  const [route,setRoute] = useState()
   const [cartBtn, setcartBtn] = useState("Add To The Cart");
-  
-  // handle change product 
-  const handleChangeProduct =()=>{
-    setRoute(!route)
-    setcartBtn("Add To The Cart")
-  }
+  const dispatch = useDispatch();
+
+  // GET PRODUCTS OF DATA FROM SLICE
+  const { productData, loading, error } = useSelector((val) => val.data);
+  // GET PRODUCTS DETAILS OF DATA FROM SLICE
+  const { productDataById, loadingById, errorById } = useSelector(
+    (val) => val.dataById
+  );
+
 
   useEffect(() => {
-    axios
-      .get(`https://fakestoreapi.com/products/${proId.id}`)
-      .then((res) => {
-        setData(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-    axios
-      .get(`https://fakestoreapi.com/products`)
-      .then((res) => {
-        setDataArr(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [route]);
+    // if (productData.find((val) => val.id === proId) === undefined) {
+    //   setcartBtn("Add To The Cart");
+    //    dispatch(addItemToCart(val));
+    //  }else{
+    //    setcartBtn("Remove From The Cart");
+    //    dispatch(deleteItemFromCart(val));
+    //  }
+  // GET PRODUCT DETAILS
+    dispatch(getDataAsyncById(proId));
+  // GET All PRODUCTS
+    dispatch(getDataAsync());
+ 
+    getRelated();
+  }, [dispatch,proId]);
 
-  useEffect(() => {
-    // filter products by category
-    const FilterPro = dataArr.filter((el) => {
-      return el.category === data.category;
+  // GET RELATED DATA BY CATEGORY
+  const getRelated = () => {
+    const FilterPro = productData.filter((el) => {
+      return el.category === productDataById.category ;
     });
     seTproductsFilter(FilterPro);
-  }, [dataArr, productsFilter]);
-
-
-  const dispatch = useDispatch();
-  const handleCart = (data) => {
-    if (cartBtn === "Add To The Cart") {
-      dispatch(addItemToCart(data));
-      setcartBtn("Remove From The Cart");
-    } else {
-      dispatch(deleteItemFromCart(data));
-      setcartBtn("Add To The Cart");
-    }
   };
 
-  if (!data.length) {
+  // ADD TO CART HANDLE
+  const handleCart = (pro) => {
+    if (cartBtn === "Add To The Cart") {
+      setcartBtn("Remove From The Cart");
+      dispatch(addItemToCart(pro));
+    }else{
+      setcartBtn("Add To The Cart");
+      dispatch(deleteItemFromCart(pro));
+    }
+};
+
+  if (loadingById) {
     return (
       <div className="Spinner_parent">
         <Spinner animation="border" variant="danger" className="spinner" />
@@ -75,48 +72,63 @@ const ProjectsDetails = () => {
 
   return (
     <div className="container my-5">
-      <div className="row details-snippet1">
+      { !loading && !error ?  <div className="row details-snippet1">
         <div className="col-md-7">
           <div className="row">
             <div className="col-md-2 mini-preview">
-              <img className="img-fluid" src={data.image} alt="Preview"  />
-              <img className="img-fluid" src={data.image} alt="Preview" />
-              <img className="img-fluid" src={data.image} alt="Preview" />
+              <img
+                className="img-fluid"
+                src={productDataById.image}
+                alt="Preview"
+              />
+              <img
+                className="img-fluid"
+                src={productDataById.image}
+                alt="Preview"
+              />
+              <img
+                className="img-fluid"
+                src={productDataById.image}
+                alt="Preview"
+              />
             </div>
             <div className="col-md-10">
               <div className="product-image mb-3">
-              <Zoom>
+                <Zoom>
                   <img
-                  className="img-fluid "
-                  style={{ height: "450px" }}
-                  src={data.image}
-                  alt="Main Image"
-                />
-              </Zoom>
-              
+                    className="img-fluid "
+                    style={{ height: "450px" }}
+                    src={productDataById.image}
+                    alt={productDataById.description}
+                  />
+                </Zoom>
               </div>
             </div>
           </div>
         </div>
         <div className="col-md-5">
           <div className="category">
-            <span className="theme-text">Category:</span> {data.category}
+            <span className="theme-text">Category:</span>{" "}
+            {productDataById.category}
           </div>
-          <div className="title">{data.title}</div>
+          <div className="title">{productDataById.title}</div>
           <div className="ratings my-2">
             <div className="stars d-flex">
               <div className="theme-text mr-2">Product Ratings: </div>
-              <Rating name="read-only" value={data.rating.rate} readOnly />
-              <div className="ml-2">({data.rating.rate}) </div>
+              <Rating
+                name="read-only"
+                value={productDataById.rating.rate}
+                readOnly
+              />
+              <div className="ml-2">({productDataById.rating.rate}) </div>
             </div>
           </div>
           <div className="price my-2">
-            ${data.price} <strike className="original-price">$120.00</strike>
+            ${productDataById.price}{" "}
+            <strike className="original-price">$120.00</strike>
           </div>
           <div className="theme-text subtitle">Brief Description:</div>
-          <div className="brief-description">{data.description}</div>
-
-          {/* <!-- TO REMOVE COLORS --> */}
+          <div className="brief-description">{productDataById.description}</div>
           <div>
             <div className="subtitle my-3 theme-text">Colors:</div>
             <div className="select-colors d-flex">
@@ -125,12 +137,11 @@ const ProjectsDetails = () => {
               <div className="color black"></div>
             </div>
           </div>
-
           <hr />
           <div className="row">
             <div className="col-12">
               <button
-                onClick={() => handleCart(data)}
+                onClick={() => handleCart(productDataById)}
                 className="btn addBtn "
               >
                 {cartBtn}
@@ -138,10 +149,9 @@ const ProjectsDetails = () => {
             </div>
           </div>
         </div>
-      </div>
+      </div> : <h5 className="text-danger">Failed to fetch!</h5>}
 
       <div className="additional-details my-5 text-center">
-        {/* <!-- Nav pills --> */}
         <ul className="nav nav-tabs justify-content-center">
           <li className="nav-tabs">
             <a
@@ -155,7 +165,7 @@ const ProjectsDetails = () => {
           </li>
           <li className="nav-item">
             <a
-              class="nav-link"
+              className="nav-link"
               data-toggle="tab"
               data-bs-toggle="tab"
               href="#menu1"
@@ -209,39 +219,55 @@ const ProjectsDetails = () => {
 
       <div className="related-products details-snippet1">
         <div className="related-heading theme-text mb-5">Related Products</div>
-
         <div className="row gx-y">
-          {productsFilter.length === 0 && <div className="Spinner_parent">
-        <Spinner animation="border" variant="danger" className="spinner" />
-      </div> }
-          { productsFilter.length !== 0 && productsFilter.map((item) => {
-            return (
-              <div className="col-md-3 gy-4  text-center">
-                <div className="related-product">
-                  <img
-                    className="img-fluid"
-                    src={item.image}
-                    alt="Related Product"
-                    style={{ height: "200px" , marginBottom:"1rem"}}
-                  />
+          {loading ?(
+            <div className="Spinner_parent">
+              <Spinner
+                animation="border"
+                variant="danger"
+                className="spinner"
+              />
+            </div>
+          ):true}
+          {!loading&& !error ?(
+            productsFilter.map((item) => {
+              return (
+                <div className="col-md-3 gy-4  text-center" key={item.id}>
+                  <div className="related-product">
+                    <img
+                      className="img-fluid"
+                      src={item.image}
+                      alt="Related Product"
+                      style={{ height: "200px", marginBottom: "1rem" }}
+                    />
+                  </div>
+                  <div
+                    style={{
+                      textDecoration: "none",
+                      color: "#000",
+                      height: "50px",
+                      overflow: "hidden",
+                    }}
+                  >
+                    <NavLink
+                      to={`/products/${item.id}`}
+                      style={{ textDecoration: "none", color: "#000" }}
+                      className="related-title"
+                    >
+                      {item.title}
+                    </NavLink>
+                  </div>
+                  <div className="d-flex justify-content-center">
+                    <Rating
+                      name="read-only"
+                      value={item.rating.rate}
+                      readOnly
+                    />
+                    ({item.rating.rate})
+                  </div>
                 </div>
-                <div style={{ textDecoration: "none", color: "#000", height:"50px" , overflow:"hidden" }}>
-                <NavLink
-                  to={`/products/${item.id}`}
-                  onClick={handleChangeProduct}
-                  style={{ textDecoration: "none", color: "#000" }}
-                  className="related-title"
-                >
-                  {item.title}
-                </NavLink>
-                </div>
-                <div className="d-flex justify-content-center">
-                <Rating name="read-only" value={item.rating.rate} readOnly />
-                  ({item.rating.rate})
-                </div>
-              </div>
-            );
-          })}
+              );
+            })):<h5 className="text-danger">{error}!</h5>}
         </div>
       </div>
     </div>

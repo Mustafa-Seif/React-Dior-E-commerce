@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import empty from "../../assets/no-records.svg";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
-import { addItemToCart } from "../../ReduxToolKit/slices/addItemSlice";
+import { addItemToCart } from "../../ReduxToolKit/slices/cartSlice";
 import { deleteItemFromWish } from "../../ReduxToolKit/slices/addWishSlice";
 
 

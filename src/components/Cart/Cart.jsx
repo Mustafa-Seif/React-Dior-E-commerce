@@ -2,7 +2,7 @@ import { React, useState,useEffect } from "react";
 import "./cart.css";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
-import { deleteItemFromCart,increaseQuantity,decreaseQuantity } from "../../ReduxToolKit/slices/addItemSlice";
+import { deleteItemFromCart,increaseQuantity,decreaseQuantity } from "../../ReduxToolKit/slices/cartSlice";
 import empty from "../../../src/assets/empty-cart.svg";
 import { getAllTotal } from "../../ReduxToolKit/slices/totalSlice";
 const Cart = () => {

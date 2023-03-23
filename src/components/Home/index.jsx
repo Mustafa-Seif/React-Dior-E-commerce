@@ -4,6 +4,7 @@ import img from "../../assets/img.jpg";
 import img2 from "../../assets/img2.jpg";
 import img3 from "../../assets/img3.jpg";
 import Products from "../Products";
+import { memo } from "react";
 
 const Home = () => {
   const [countDate, setCountDate] = useState("");
@@ -131,4 +132,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default memo(Home);
