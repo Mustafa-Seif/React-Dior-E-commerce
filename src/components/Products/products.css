@@ -143,3 +143,18 @@ div.see-more a {
   background-color: #a749ff;
   padding: 0px 10px;
 }
+
+
+.pagination{
+  /* color: #fff; */
+  padding: 5px;
+  /* background-color: red; */
+}
+
+.activeNav{
+  padding: 0 6px;
+
+  color: #fff;
+  background-color: red;
+
+}

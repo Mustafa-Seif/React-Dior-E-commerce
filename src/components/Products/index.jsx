@@ -10,6 +10,7 @@ import { addItemToWish } from "../../ReduxToolKit/slices/addWishSlice";
 import noResults from "../../assets/searching-data.svg";
 import Rating from "@mui/material/Rating";
 import { getDataAsync } from "../../ReduxToolKit/slices/getDataSlice";
+import ReactPaginate from "react-paginate";
 
 const Products = () => {
   // liked product
@@ -46,7 +47,18 @@ const Products = () => {
       setNewData(productData);
     }
   }, [searchVal]);
-  
+
+  const [currentPage, setCurrentPage] = useState(0);
+  const itemsPerPage = 10; // Number of items per page
+
+  const handlePageClick = (data) => {
+    const selectedPage = data.selected;
+    setCurrentPage(selectedPage);
+  };
+
+  const offset = currentPage * itemsPerPage; // Index of the first item on the current page
+  const currentPageItems = neWdata.slice(offset, offset + itemsPerPage); // Items on the current page
+
   // SHOW SPINNER ON LOADING
   if (loading) {
     return (
@@ -91,9 +103,29 @@ const Products = () => {
         </div>
         <div className="container">
           <div className="row justify-content-around gy-5">
-            {neWdata && !loading && !error ? !neWdata.length && emptyCart() :true}
+            {/* EMPTY IMAGE  */}
+            {neWdata && !loading && !error
+              ? !neWdata.length && emptyCart()
+              : true}
+            {/* PAGINATION  */}
             {!error && !loading ? (
-              neWdata.map((d) => {
+              <div className="text-center border">
+                <ReactPaginate
+                  nextLabel="next >"
+                  previousLabel="< previous"
+                  pageCount={Math.ceil(neWdata.length / itemsPerPage)} // Total number of pages
+                  onPageChange={handlePageClick} // Callback function to handle page clicks
+                  forcePage={currentPage} // Current active page
+                  containerClassName={"pagination"} // CSS class for the pagination container
+                  activeClassName={"activeNav"} // CSS class for the active page
+                />
+              </div>
+            ) : (
+              true
+            )}
+
+            {!error && !loading ? (
+              currentPageItems.map((d) => {
                 return (
                   <div className="col-md-4 " key={d.id}>
                     <div className="product-card ">

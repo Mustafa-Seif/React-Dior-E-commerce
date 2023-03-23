@@ -1,13 +1,11 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { toast } from "react-toastify";
 
 
 export const getDataAsync = createAsyncThunk(
   "data/getDataAsync",
-  async (args, thunkApi) => {
+  async (_, thunkApi) => {
     const {rejectWithValue} = thunkApi;
     try {
-      console.log(thunkApi)
       const res = await fetch("https://fakestoreapi.com/products");
       const data = await res.json();
       return data;

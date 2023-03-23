@@ -12,12 +12,14 @@ import Zoom from "react-medium-image-zoom";
 import Rating from "@mui/material/Rating";
 import { getDataAsyncById } from "../../ReduxToolKit/slices/getDataByIdSlice";
 import { getDataAsync } from "../../ReduxToolKit/slices/getDataSlice";
+import { useLocation } from "react-router-dom";
 
 const ProjectsDetails = () => {
   const proId = useParams();
   const [productsFilter, seTproductsFilter] = useState([]);
   const [cartBtn, setcartBtn] = useState("Add To The Cart");
   const dispatch = useDispatch();
+  const location = useLocation();
 
   // GET PRODUCTS OF DATA FROM SLICE
   const { productData, loading, error } = useSelector((val) => val.data);
@@ -25,7 +27,6 @@ const ProjectsDetails = () => {
   const { productDataById, loadingById, errorById } = useSelector(
     (val) => val.dataById
   );
-
 
   useEffect(() => {
     // if (productData.find((val) => val.id === proId) === undefined) {
@@ -39,17 +40,19 @@ const ProjectsDetails = () => {
     dispatch(getDataAsyncById(proId));
   // GET All PRODUCTS
     dispatch(getDataAsync());
- 
-    getRelated();
-  }, [dispatch,proId]);
+  }, [dispatch]);
 
   // GET RELATED DATA BY CATEGORY
-  const getRelated = () => {
-    const FilterPro = productData.filter((el) => {
-      return el.category === productDataById.category ;
-    });
-    seTproductsFilter(FilterPro);
-  };
+  useEffect(() => {
+    // const getRelated = () => {
+      const FilterPro = productData.filter((el) => {
+        return el.category === productDataById.category ;
+      });
+      seTproductsFilter(FilterPro);
+    // };
+  }, [location, productData, productDataById.category])
+  
+  
 
   // ADD TO CART HANDLE
   const handleCart = (pro) => {
