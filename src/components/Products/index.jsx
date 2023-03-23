@@ -34,20 +34,29 @@ const Products = () => {
   useEffect(() => {
     dispatch(getDataAsync());
     setNewData(productData);
+    filterationPro()
   }, [dispatch]);
 
   // FILTERATION DATA ON SEARCH
   useEffect(() => {
-    if (searchVal) {
-      const filterdData = productData.filter((el, ind) => {
-        return el.title.toLowerCase().includes(searchVal.toLowerCase());
-      });
-      setNewData(filterdData);
-    } else {
-      setNewData(productData);
-    }
+    filterationPro()
   }, [searchVal]);
 
+const filterationPro =()=>{
+  if (searchVal) {
+    const filterdData = productData.filter((el, ind) => {
+      return el.title.toLowerCase().includes(searchVal.toLowerCase());
+    });
+    setNewData(filterdData);
+  } else {
+    setNewData(productData);
+  }
+}
+
+
+
+
+// PAGINATION 
   const [currentPage, setCurrentPage] = useState(0);
   const itemsPerPage = 10; // Number of items per page
 
@@ -108,7 +117,7 @@ const Products = () => {
               ? !neWdata.length && emptyCart()
               : true}
             {/* PAGINATION  */}
-            {!error && !loading ? (
+            {!error && !loading && currentPageItems.length ? (
               <div className="text-center">
                 <ReactPaginate
                   nextLabel="next >"
@@ -117,7 +126,7 @@ const Products = () => {
                   onPageChange={handlePageClick} // Callback function to handle page clicks
                   forcePage={currentPage} // Current active page
                   containerClassName={"pagination"} // CSS class for the pagination container
-                  activeClassName={"activeNav"} // CSS class for the active page
+                  activeClassName={"active"} // CSS class for the active page
                 />
               </div>
             ) : (
@@ -216,7 +225,7 @@ const Products = () => {
               <h5 className="text-danger">{error}!</h5>
             )}
                {/* PAGINATION  */}
-               {!error && !loading ? (
+               {!error && !loading && currentPageItems.length? (
               <div className="text-center">
                 <ReactPaginate
                   nextLabel="next >"
@@ -225,7 +234,7 @@ const Products = () => {
                   onPageChange={handlePageClick} // Callback function to handle page clicks
                   forcePage={currentPage} // Current active page
                   containerClassName={"pagination"} // CSS class for the pagination container
-                  activeClassName={"activeNav"} // CSS class for the active page
+                  activeClassName={"active"} // CSS class for the active page
                 />
               </div>
             ) : (
