@@ -117,7 +117,7 @@ const filterationPro =()=>{
               ? !neWdata.length && emptyCart()
               : true}
             {/* PAGINATION  */}
-            {!error && !loading && currentPageItems.length ? (
+            {!error && !loading && neWdata.length > 10? (
               <div className="text-center">
                 <ReactPaginate
                   nextLabel="next >"
@@ -225,7 +225,7 @@ const filterationPro =()=>{
               <h5 className="text-danger">{error}!</h5>
             )}
                {/* PAGINATION  */}
-               {!error && !loading && currentPageItems.length? (
+               {!error && !loading && neWdata.length > 10? (
               <div className="text-center">
                 <ReactPaginate
                   nextLabel="next >"
