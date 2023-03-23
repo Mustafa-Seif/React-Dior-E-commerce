@@ -109,7 +109,7 @@ const Products = () => {
               : true}
             {/* PAGINATION  */}
             {!error && !loading ? (
-              <div className="text-center border">
+              <div className="text-center">
                 <ReactPaginate
                   nextLabel="next >"
                   previousLabel="< previous"
@@ -214,6 +214,22 @@ const Products = () => {
               })
             ) : (
               <h5 className="text-danger">{error}!</h5>
+            )}
+               {/* PAGINATION  */}
+               {!error && !loading ? (
+              <div className="text-center">
+                <ReactPaginate
+                  nextLabel="next >"
+                  previousLabel="< previous"
+                  pageCount={Math.ceil(neWdata.length / itemsPerPage)} // Total number of pages
+                  onPageChange={handlePageClick} // Callback function to handle page clicks
+                  forcePage={currentPage} // Current active page
+                  containerClassName={"pagination"} // CSS class for the pagination container
+                  activeClassName={"activeNav"} // CSS class for the active page
+                />
+              </div>
+            ) : (
+              true
             )}
           </div>
         </div>

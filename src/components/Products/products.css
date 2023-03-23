@@ -146,10 +146,13 @@ div.see-more a {
 
 
 .pagination{
-  /* color: #fff; */
+  display: flex !important;
+justify-content: center;
+ 
   padding: 5px;
-  /* background-color: red; */
 }
+
+ 
 
 .activeNav{
   padding: 0 6px;
