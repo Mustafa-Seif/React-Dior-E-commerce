@@ -29,42 +29,37 @@ const Products = () => {
   const handleToCart = (item) => {
     dispatch(addItemToCart(item));
   };
-
+  
   // DISPATCH ACTION TO GET DATA
   useEffect(() => {
     dispatch(getDataAsync());
+    filterationPro();
     setNewData(productData);
-    filterationPro()
-  }, [dispatch]);
+  }, []);
 
   // FILTERATION DATA ON SEARCH
   useEffect(() => {
-    filterationPro()
+    filterationPro();
   }, [searchVal]);
 
-const filterationPro =()=>{
-  if (searchVal) {
-    const filterdData = productData.filter((el, ind) => {
-      return el.title.toLowerCase().includes(searchVal.toLowerCase());
-    });
-    setNewData(filterdData);
-  } else {
-    setNewData(productData);
-  }
-}
+  const filterationPro = () => {
+    if (searchVal) {
+      const filterdData = productData.filter((el, ind) => {
+        return el.title.toLowerCase().includes(searchVal.toLowerCase());
+      });
+      setNewData(filterdData);
+    } else {
+      setNewData(productData);
+    }
+  };
 
-
-
-
-// PAGINATION 
+  // PAGINATION
   const [currentPage, setCurrentPage] = useState(0);
   const itemsPerPage = 10; // Number of items per page
-
   const handlePageClick = (data) => {
     const selectedPage = data.selected;
     setCurrentPage(selectedPage);
   };
-
   const offset = currentPage * itemsPerPage; // Index of the first item on the current page
   const currentPageItems = neWdata.slice(offset, offset + itemsPerPage); // Items on the current page
 
@@ -117,11 +112,11 @@ const filterationPro =()=>{
               ? !neWdata.length && emptyCart()
               : true}
             {/* PAGINATION  */}
-            {!error && !loading && neWdata.length > 10? (
+            {!error && !loading && neWdata.length > 10 ? (
               <div className="text-center">
                 <ReactPaginate
-                  nextLabel="next >"
-                  previousLabel="< previous"
+                  nextLabel="next >>"
+                  previousLabel="<< previous"
                   pageCount={Math.ceil(neWdata.length / itemsPerPage)} // Total number of pages
                   onPageChange={handlePageClick} // Callback function to handle page clicks
                   forcePage={currentPage} // Current active page
@@ -224,8 +219,8 @@ const filterationPro =()=>{
             ) : (
               <h5 className="text-danger">{error}!</h5>
             )}
-               {/* PAGINATION  */}
-               {!error && !loading && neWdata.length > 10? (
+            {/* PAGINATION  */}
+            {!error && !loading && neWdata.length > 10 ? (
               <div className="text-center">
                 <ReactPaginate
                   nextLabel="next >"

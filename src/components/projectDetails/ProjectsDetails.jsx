@@ -40,7 +40,7 @@ const ProjectsDetails = () => {
     dispatch(getDataAsyncById(proId));
   // GET All PRODUCTS
     dispatch(getDataAsync());
-  }, [dispatch]);
+  }, [dispatch,location]);
 
   // GET RELATED DATA BY CATEGORY
   useEffect(() => {
