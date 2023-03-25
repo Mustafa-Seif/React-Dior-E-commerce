@@ -21,6 +21,8 @@ const ProjectsDetails = () => {
   const dispatch = useDispatch();
   const location = useLocation();
 
+  // GET CART ITEMS 
+  const cartItems = useSelector((val) => val.cart.value);
   // GET PRODUCTS OF DATA FROM SLICE
   const { productData, loading, error } = useSelector((val) => val.data);
   // GET PRODUCTS DETAILS OF DATA FROM SLICE
@@ -28,14 +30,16 @@ const ProjectsDetails = () => {
     (val) => val.dataById
   );
 
+  // CHANGE ADD TO CART BUTTON BASED ON CART
+useEffect(() => {
+  if (cartItems.find(val => val.id == proId.id) === undefined) {
+    setcartBtn("Add To The Cart");
+   }else{
+     setcartBtn("Remove From The Cart");
+   }
+}, [])
+
   useEffect(() => {
-    // if (productData.find((val) => val.id === proId) === undefined) {
-    //   setcartBtn("Add To The Cart");
-    //    dispatch(addItemToCart(val));
-    //  }else{
-    //    setcartBtn("Remove From The Cart");
-    //    dispatch(deleteItemFromCart(val));
-    //  }
   // GET PRODUCT DETAILS
     dispatch(getDataAsyncById(proId));
   // GET All PRODUCTS
