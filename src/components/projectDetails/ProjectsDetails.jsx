@@ -120,10 +120,8 @@ const ProjectsDetails = () => {
               <div className="theme-text mr-2">Product Ratings: </div>
               <Rating
                 name="read-only"
-                value={productDataById.rating.rate}
-                readOnly
               />
-              <div className="ml-2">({productDataById.rating.rate}) </div>
+              {/* <div className="ml-2">({productDataById.rating.rate}) </div> */}
             </div>
           </div>
           <div className="price my-2">
