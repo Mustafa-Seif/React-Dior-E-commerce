@@ -36,7 +36,7 @@ const NavBar = () => {
   };
 
   // SIGN OUT
-  const signOut = () => {
+  const signOutFun = () => {
     Swal.fire({
       text: "Are you sure you want sign out?",
       icon: "warning",
@@ -46,11 +46,7 @@ const NavBar = () => {
       confirmButtonText: "Yes",
     }).then((result) => {
       if (result.isConfirmed) {
-        // CHANGE AUTH STATUS 
-        dispatch(isloged(false));
-        // NAV TO HOME PAGE 
-        Route("/");
-        // FIRE SIGN OUT FIREBASE AUTH 
+        // FIRE SIGN OUT FIREBASE AUTH
         signOut(auth)
           .then(() => {
             // FIRE TOAST
@@ -65,19 +61,12 @@ const NavBar = () => {
               theme: "colored",
             });
           })
-          .catch((error) => {
-            // FIRE TOAST
-            toast.error(`${error.massage}`, {
-              position: "bottom-left",
-              autoClose: 1000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-              theme: "colored",
-            });
-          });
+          .then(() => {
+            // CHANGE AUTH STATUS
+            dispatch(isloged(false));
+            // NAV TO HOME PAGE
+            Route("/");
+          })
       }
     });
   };
@@ -134,7 +123,7 @@ const NavBar = () => {
                 )}
                 {_islogin && (
                   // <li onClick={() => dispatch(isloged(false))}>
-                  <li onClick={signOut}>
+                  <li onClick={signOutFun}>
                     <NavLink to="/" className="text-danger">
                       <LogoutIcon />
                     </NavLink>

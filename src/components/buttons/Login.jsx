@@ -25,7 +25,6 @@ const Login = () => {
     await signInWithEmailAndPassword(auth, eMail, password)
       .then((userCredential) => {
         const user = userCredential.user;
-        console.log(user);
         navigate("/");
         // ...
         window.document.body.style.overflowY = "scroll";

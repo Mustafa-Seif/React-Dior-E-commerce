@@ -66,7 +66,7 @@ const Register = () => {
       <div
       className="container mt-3"
       >
-        <div className="" >
+        <div >
           <div className="modal-content">
             <div className="modal-header">
               <h4 className="modal-title fw-bolder" id="exampleModalLabel">
@@ -154,7 +154,7 @@ const Register = () => {
                 <div className="form-group mb-4">
                   <TextField
                     variant="filled"
-                    label="Password"
+                    label="Confirm password"
                     type="password"
                     className="form-control"
                     id="registerInputPassword2"
