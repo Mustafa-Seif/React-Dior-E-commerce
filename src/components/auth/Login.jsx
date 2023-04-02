@@ -7,18 +7,43 @@ import { isloged } from "../../ReduxToolKit/slices/authSlice";
 import { NavLink } from "react-router-dom";
 import TextField from "@mui/material/TextField";
 
+
+
+// import { NavLink, useNavigate } from 'react-router-dom';
+import {  createUserWithEmailAndPassword  } from 'firebase/auth';
+import { auth } from '../firebase';
+
+
+
+
+
+
+
+
+
 const Login = () => {
   const dispatch = useDispatch();
+
   const {
     register,
     formState: { errors },
     handleSubmit,
   } = useForm();
+
   const onSubmit = (data) => {
-    console.log(data)
+
+
+
+
+
+
+
+
+    console.log(data,"data")
     window.document.body.style.overflowY = "scroll";
     dispatch(isloged(true));
   };
+
   return (
     <>
       {/* <!-- Button trigger modal --> */}

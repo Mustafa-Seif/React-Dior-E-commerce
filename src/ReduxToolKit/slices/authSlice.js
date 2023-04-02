@@ -12,32 +12,6 @@ export const authSlice = createSlice({
   reducers: {
     isloged: (state, action) => {
       state.value = action.payload;
-      if (action.payload) {
-        // FIRE TOAST
-        toast.success("Welcome", {
-          position: "bottom-left",
-          autoClose: 1000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "colored",
-        });
-      }
-      else if(!action.payload){
-          // FIRE TOAST
-          toast.info("sign out", {
-            position: "bottom-left",
-            autoClose: 1000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "colored",
-          });
-      }
     },
   },
 });

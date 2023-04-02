@@ -15,6 +15,7 @@ import NavBar from "./components/NavBar";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Register from "./components/buttons/register";
 
 function App() {
   return (
@@ -30,12 +31,12 @@ function App() {
           <Route path="/products" element={<Products />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/products/:id" element={<ProjectsDetails />} />
+          <Route path="/register" element={<Register />} />
           <Route element={<ProtectedRoute/>}>
           <Route path="/cart" element={<Cart />} />
           <Route path="/checkout" element={<CheckOut />} />
           <Route path="/wishlist" element={<WishList />} />
           </Route>
-          {/* <Route path="/signup" element={< />} /> */}
           <Route path="*" element={<NoPage />} />
         </Routes>
         </div>

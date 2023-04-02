@@ -8,8 +8,10 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { isloged } from "../../ReduxToolKit/slices/authSlice";
 import { toast } from "react-toastify";
-import Swal from 'sweetalert2';
+import Swal from "sweetalert2";
 import { Route } from "react-router-dom";
+import { signOut } from "firebase/auth";
+import { auth } from "../../firebase";
 
 const NavBar = () => {
   const dispatch = useDispatch();
@@ -17,40 +19,68 @@ const NavBar = () => {
   const wishlist = useSelector((state) => state.wish.value);
   const _islogin = useSelector((state) => state.auth.value);
 
-
   // CKECK IS LOGIN OR NOT ON CLICK
-  const checkAuth = ()=>{
-    return (!_islogin ?  (     // FIRE TOAST
-    toast.info("Please login first !", {
-      position: "bottom-left",
-      autoClose: 1000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "colored",
-    })) : true)
-  }
+  const checkAuth = () => {
+    return !_islogin // FIRE TOAST
+      ? toast.info("Please login first !", {
+          position: "bottom-left",
+          autoClose: 1000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        })
+      : true;
+  };
 
-   // SIGN OUT
-   const signOut = ()=>{
-    // CHANGE SIGN STATUS
+  // SIGN OUT
+  const signOut = () => {
     Swal.fire({
-      text: 'Are you sure you want sign out?',
-      icon: 'warning',
+      text: "Are you sure you want sign out?",
+      icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: '#A749FF',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes'
-    })
-    .then((result) => {
+      confirmButtonColor: "#A749FF",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes",
+    }).then((result) => {
       if (result.isConfirmed) {
-        dispatch(isloged(false))
-        Route('/')
+        // CHANGE AUTH STATUS 
+        dispatch(isloged(false));
+        // NAV TO HOME PAGE 
+        Route("/");
+        // FIRE SIGN OUT FIREBASE AUTH 
+        signOut(auth)
+          .then(() => {
+            // FIRE TOAST
+            toast.info(`Sign Out!`, {
+              position: "bottom-left",
+              autoClose: 1000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "colored",
+            });
+          })
+          .catch((error) => {
+            // FIRE TOAST
+            toast.error(`${error.massage}`, {
+              position: "bottom-left",
+              autoClose: 1000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "colored",
+            });
+          });
       }
-    })
-  }
+    });
+  };
   return (
     <nav>
       <div className="container">
@@ -120,7 +150,7 @@ const NavBar = () => {
                     </span>
                   </div>
                 </li>
-                <li  onClick={checkAuth}>
+                <li onClick={checkAuth}>
                   <div className="cart_warpper">
                     <NavLink
                       to="/cart"
